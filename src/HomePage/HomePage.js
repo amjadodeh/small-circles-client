@@ -1,10 +1,13 @@
 import TopBar from '../TopBar/TopBar';
+import PostList from '../PostList/PostList';
+import Nav from '../Nav/Nav';
 
 const HomePage = () => {
   return (
     <>
       <TopBar currentPage="Home" />
-      <div>Home</div>
+      <PostList />
+      <Nav />
     </>
   );
 };

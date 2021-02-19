@@ -1,0 +1,16 @@
+.landing-page-container {
+  text-align: center;
+  margin-top: -50px;
+  height: 100vh;
+  width: 100vw;
+}
+
+.landing-page-content {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
