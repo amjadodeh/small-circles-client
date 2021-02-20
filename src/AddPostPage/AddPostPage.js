@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 
-import { PostsContext } from '../PostsContext';
+import { PostsContext } from '../Context/PostsContext';
 import TopBar from '../TopBar/TopBar';
 import Nav from '../Nav/Nav';
 

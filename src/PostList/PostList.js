@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { PostsContext } from '../PostsContext';
+import { PostsContext } from '../Context/PostsContext';
 import './PostList.css';
 
 const PostList = (props) => {

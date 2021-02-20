@@ -7,14 +7,17 @@ export const PostsProvider = (props) => {
     {
       id: 1,
       content: 'Hello, App! This is Post 1!',
+      user_id: '1',
     },
     {
       id: 2,
       content: 'Hello from Post 2!',
+      user_id: '1',
     },
     {
       id: 3,
       content: 'Hello from Post 3!',
+      user_id: '1',
     },
   ]);
   return (

@@ -1,21 +1,35 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import SignUpForm from '../SignUpForm/SignUpForm';
+import LogInForm from '../LogInForm/LogInForm';
 import './LandingPage.css';
 
 const LandingPage = () => {
   const [showLearn, setShowLearn] = useState(false);
+  const [newUser, setNewUser] = useState(false);
 
-  function handleClick() {
+  const handleClickLearn = () => {
     setShowLearn((currentShowLearn) => !currentShowLearn);
-  }
+  };
+
+  const handleClickChangeForm = () => {
+    setNewUser((newUser) => !newUser);
+  };
 
   return (
     <div className="landing-page-container">
       <div className="landing-page-content">
-        <h1>Welcome to Small Circles! Your data is your data.</h1>
-        <div>Your data is your data.</div>
-        <button onClick={handleClick}>Learn more</button>
+        <h1>Small Circles</h1>
+        <p>Your data is your data.</p>
+
+        <div className="landing-form-container">
+          {!newUser ? <LogInForm /> : <SignUpForm />}
+        </div>
+
+        <button onClick={handleClickLearn}>
+          Learn more about Small Circles
+        </button>
         {showLearn && (
           <div>
             Small Circles is a social networking service focused on giving you
@@ -28,9 +42,20 @@ const LandingPage = () => {
             open source.
           </div>
         )}
-        <div>
-          sign in here or <Link to="/home">continue without an account</Link>
-        </div>
+
+        <hr className="landing-hr" />
+
+        {!newUser ? (
+          <div>
+            Don't have an account?{' '}
+            <button onClick={handleClickChangeForm}>Sign up.</button>
+          </div>
+        ) : (
+          <div>
+            Already have an account?{' '}
+            <button onClick={handleClickChangeForm}>Log in.</button>
+          </div>
+        )}
       </div>
     </div>
   );
