@@ -21,11 +21,11 @@ function App() {
         <div className="App">
           {loggedIn ? (
             <Switch>
-              <Route path="/home" component={HomePage} />
               <Route path="/explore" component={ExplorePage} />
               <Route path="/add-post" component={AddPostPage} />
               <Route path="/messages" component={MessagesPage} />
               <Route path="/account" component={AccountPage} />
+              <Route path="/" component={HomePage} />
             </Switch>
           ) : (
             <LandingPage />

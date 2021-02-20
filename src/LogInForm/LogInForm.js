@@ -1,10 +1,12 @@
 import { useState, useContext } from 'react';
 
 import { UsersContext } from '../Context/UsersContext';
+import { LoggedInContext } from '../Context/LoggedInContext';
 import './LogInForm.css';
 
 const LogInForm = () => {
   const [users, setUsers] = useContext(UsersContext);
+  const [loggedIn, setLoggedIn] = useContext(LoggedInContext);
 
   const [logIn, setLogIn] = useState({
     username: '',
@@ -43,8 +45,10 @@ const LogInForm = () => {
       if (user) {
         if (password === user.password) {
           setValidationError('');
-          alert('success');
-          // handle user log in
+          setLoggedIn({
+            id: user.id,
+            username: user.username,
+          });
         } else {
           setValidationError('Incorrect password');
         }

@@ -1,10 +1,12 @@
 import { useState, useContext } from 'react';
 
 import { UsersContext } from '../Context/UsersContext';
+import { LoggedInContext } from '../Context/LoggedInContext';
 import './SignUpForm.css';
 
 const SignUpForm = () => {
   const [users, setUsers] = useContext(UsersContext);
+  const [loggedIn, setLoggedIn] = useContext(LoggedInContext);
 
   const [signUp, setSignUp] = useState({
     username: '',
@@ -50,15 +52,19 @@ const SignUpForm = () => {
       const username = signUp.username;
       const password = signUp.password;
 
-      const newUser = {
+      const newUserSignUp = {
         id: users.length + 1,
         username,
         password,
       };
 
       setValidationError('');
-      setUsers([...users, newUser]);
-      // handle log in
+      setUsers([...users, newUserSignUp]);
+
+      setLoggedIn({
+        id: users.length + 1,
+        username,
+      });
     }
   };
 
