@@ -14,8 +14,8 @@ const Nav = () => {
       <Link to="/add-post">
         <button>add post</button>
       </Link>
-      <Link to="/messages">
-        <button>messages</button>
+      <Link to="/onlyforyou">
+        <button>only for you</button>
       </Link>
       <Link to="/account">
         <button>account</button>
