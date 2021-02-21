@@ -36,9 +36,16 @@ export const PostsProvider = (props) => {
     },
     {
       id: 6,
-      content: 'Hello from Post 6... A hidden post.',
-      private: [2],
+      content:
+        'Hello from Post 6... A hidden post for User1, User2, and User3... Me!',
+      private: [3, 2, 1],
       user_id: 3,
+    },
+    {
+      id: 7,
+      content: 'Hello from Post 6... A hidden post for only User2... Me!',
+      private: [2],
+      user_id: 2,
     },
   ]);
   return (

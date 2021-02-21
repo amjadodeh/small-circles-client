@@ -6,6 +6,7 @@ const HomePage = () => {
   return (
     <>
       <TopBar currentPage="Home" />
+      <p>These posts are public or shared to circles you are in.</p>
       <PostList />
       <Nav />
     </>
