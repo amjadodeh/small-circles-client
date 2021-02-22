@@ -20,3 +20,13 @@
   text-decoration-color: gray;
   text-decoration-style: dotted;
 }
+
+.account-page-private-posts-button {
+  position: absolute;
+  right: 0;
+}
+
+.account-page-edit-profile {
+  display: flex;
+  margin: auto;
+}
