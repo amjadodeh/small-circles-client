@@ -23,21 +23,9 @@ const Post = (props) => {
 
   if (props.messages) {
     if (loggedIn.id === props.postUserId) {
-      return (
-        <div className="post">
-          <div>{postUser.username} (You)</div>
-          {props.content}
-          <div>Shared with {friendUser.username}</div>
-        </div>
-      );
+      return <div className="right-message">{props.content}</div>;
     } else {
-      return (
-        <div className="post">
-          <div>{postUser.username}</div>
-          {props.content}
-          <div>Shared with you</div>
-        </div>
-      );
+      return <div className="left-message">{props.content}</div>;
     }
   }
 

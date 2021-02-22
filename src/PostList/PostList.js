@@ -40,13 +40,14 @@ const PostList = (props) => {
         post.private.find((id) => id === loggedIn.id) &&
         post.private.find((id) => id === props.messages.id) &&
         post.private.length === 2 && (
-          <Post
-            key={post.id}
-            messages={true}
-            friend={post.private[1] ? post.private[1] : false}
-            postUserId={post.user_id}
-            content={post.content}
-          />
+          <div key={post.id}>
+            <Post
+              messages={true}
+              friend={post.private[1] ? post.private[1] : false}
+              postUserId={post.user_id}
+              content={post.content}
+            />
+          </div>
         )
     );
   }

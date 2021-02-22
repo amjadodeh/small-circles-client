@@ -1,0 +1,16 @@
+.messages-page-postlist-div {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+
+.messages-page-message-div {
+  padding: 1% 0;
+  background-color: #aaa;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
