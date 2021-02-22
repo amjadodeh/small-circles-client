@@ -33,7 +33,7 @@ const ExplorePage = () => {
 
       <br />
 
-      <PostList search={search} />
+      <PostList explore={true} search={search} />
 
       <Nav />
     </>

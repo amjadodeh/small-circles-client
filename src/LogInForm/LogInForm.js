@@ -48,6 +48,7 @@ const LogInForm = () => {
           setLoggedIn({
             id: user.id,
             username: user.username,
+            friends: user.friends,
           });
         } else {
           setValidationError('Incorrect password');

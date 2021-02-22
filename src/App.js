@@ -8,7 +8,7 @@ import LandingPage from './LandingPage/LandingPage';
 import HomePage from './HomePage/HomePage';
 import ExplorePage from './ExplorePage/ExplorePage';
 import AddPostPage from './AddPostPage/AddPostPage';
-import OnlyForYouPage from './OnlyForYouPage/OnlyForYouPage';
+import MessagesPage from './MessagesPage/MessagesPage';
 import AccountPage from './AccountPage/AccountPage';
 import './App.css';
 
@@ -23,7 +23,7 @@ function App() {
             <Switch>
               <Route path="/explore" component={ExplorePage} />
               <Route path="/add-post" component={AddPostPage} />
-              <Route path="/onlyforyou" component={OnlyForYouPage} />
+              <Route path="/messages" component={MessagesPage} />
               <Route path="/account" component={AccountPage} />
               <Route path="/" component={HomePage} />
             </Switch>

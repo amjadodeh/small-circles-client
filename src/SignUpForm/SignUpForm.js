@@ -64,6 +64,7 @@ const SignUpForm = () => {
       setLoggedIn({
         id: users.length + 1,
         username,
+        friends: [],
       });
     }
   };

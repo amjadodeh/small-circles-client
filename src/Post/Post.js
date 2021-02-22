@@ -8,35 +8,58 @@ const Post = (props) => {
   const [loggedIn, setLoggedIn] = useContext(LoggedInContext);
   const [users, setUsers] = useContext(UsersContext);
 
-  if (props.onlyForYou) {
-    return (
-      <div className="post">
-        <div>
-          {loggedIn.id === props.postUserId
-            ? 'Note to Self'
-            : `From: ${
-                users.find((user) => user.id === props.postUserId).username
-              }`}
-        </div>
-        {props.content}
-        <div>Only For You</div>
-      </div>
-    );
-  }
+  const postUser = users.find((user) => user.id === props.postUserId);
+  const friendUser = users.find((user) => user.id === props.friend);
+
   if (props.private) {
     return (
       <div className="post">
+        <div>{loggedIn.id === props.postUserId}</div>
         {props.content}
-        <div>Private Post</div>
+        <div>Only for you</div>
       </div>
     );
   }
-  return (
-    <div className="post">
-      {props.content}
-      <div>Public Post</div>
-    </div>
-  );
+
+  if (props.messages) {
+    if (loggedIn.id === props.postUserId) {
+      return (
+        <div className="post">
+          <div>{postUser.username} (You)</div>
+          {props.content}
+          <div>Shared with {friendUser.username}</div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="post">
+          <div>{postUser.username}</div>
+          {props.content}
+          <div>Shared with you</div>
+        </div>
+      );
+    }
+  }
+
+  if (props.sharedWithCircle) {
+    return (
+      <div className="post">
+        <div>{postUser.username}</div>
+        {props.content}
+        <div>Shared with Circle</div>
+      </div>
+    );
+  }
+
+  if (props.public) {
+    return (
+      <div className="post">
+        <div>{postUser.username}</div>
+        {props.content}
+        <div>Public Post</div>
+      </div>
+    );
+  }
 };
 
 export default Post;
