@@ -56,6 +56,9 @@ const SignUpForm = () => {
         id: users.length + 1,
         username,
         password,
+        profile_picture:
+          'https://images.pexels.com/photos/772478/pexels-photo-772478.jpeg',
+        friends: [],
       };
 
       setValidationError('');
@@ -64,6 +67,8 @@ const SignUpForm = () => {
       setLoggedIn({
         id: users.length + 1,
         username,
+        profile_picture:
+          'https://images.pexels.com/photos/772478/pexels-photo-772478.jpeg',
         friends: [],
       });
     }

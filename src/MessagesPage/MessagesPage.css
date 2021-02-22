@@ -1,7 +1,7 @@
 .messages-page-postlist-div {
   display: flex;
   flex-direction: column;
-  padding-bottom: 20px;
+  margin-bottom: -30px;
 }
 
 .messages-page-message-div {

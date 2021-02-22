@@ -24,7 +24,7 @@ function App() {
               <Route path="/explore" component={ExplorePage} />
               <Route path="/add-post" component={AddPostPage} />
               <Route path="/messages" component={MessagesPage} />
-              <Route path="/account" component={AccountPage} />
+              <Route path="/account/:userId" component={AccountPage} />
               <Route path="/" component={HomePage} />
             </Switch>
           ) : (

@@ -48,6 +48,7 @@ const LogInForm = () => {
           setLoggedIn({
             id: user.id,
             username: user.username,
+            profile_picture: user.profile_picture,
             friends: user.friends,
           });
         } else {

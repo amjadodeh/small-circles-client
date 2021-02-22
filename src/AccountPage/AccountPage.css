@@ -1,0 +1,22 @@
+.account-page-profile-picture {
+  object-fit: cover;
+  object-position: center;
+  height: 150px;
+  width: 150px;
+  margin: 0 auto;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.account-page-hr {
+  border: 1px solid #d9d9d9;
+}
+
+.account-page-your-posts-div {
+  text-align: center;
+  text-decoration: underline;
+  text-decoration-color: gray;
+  text-decoration-style: dotted;
+}

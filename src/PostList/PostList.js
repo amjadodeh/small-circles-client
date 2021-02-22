@@ -9,12 +9,6 @@ const PostList = (props) => {
   const [posts, setPosts] = useContext(PostsContext);
   const [loggedIn, setLoggedIn] = useContext(LoggedInContext);
 
-  // Posts for logged in users page
-  if (props.user) {
-    // future implementation
-    return <div></div>;
-  }
-
   // Private posts for logged in user / shared with nobody
   if (props.private) {
     return posts.map(
@@ -52,6 +46,33 @@ const PostList = (props) => {
     );
   }
 
+  // Posts for logged in user / Public and shared in circles
+  if (props.userId) {
+    return (
+      posts.map((post) =>
+        !post.private && post.user_id === props.userId ? (
+          <Post
+            key={post.id}
+            public={true}
+            postUserId={post.user_id}
+            content={post.content}
+          />
+        ) : (
+          post.private &&
+          post.user_id === props.userId &&
+          post.private.length > 2 && (
+            <Post
+              key={post.id}
+              sharedWithCircle={true}
+              postUserId={post.user_id}
+              content={post.content}
+            />
+          )
+        )
+      ) || 'nothing here'
+    );
+  }
+
   // Search through public posts and posts shared with circle
   if (props.explore) {
     return (
@@ -65,6 +86,7 @@ const PostList = (props) => {
             content={post.content}
           />
         ) : (
+          post.content.toLowerCase().includes(props.search.toLowerCase()) &&
           post.private &&
           post.private.find((id) => id === loggedIn.id) &&
           post.private.length > 2 && (
