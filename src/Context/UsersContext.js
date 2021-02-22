@@ -28,6 +28,14 @@ export const UsersProvider = (props) => {
         'https://images.pexels.com/photos/772478/pexels-photo-772478.jpeg',
       friends: [1, 2],
     },
+    {
+      id: 4,
+      username: 'User4',
+      password: 'Pass4',
+      profile_picture:
+        'https://images.pexels.com/photos/772478/pexels-photo-772478.jpeg',
+      friends: [],
+    },
   ]);
   return (
     <UsersContext.Provider value={[users, setUsers]}>

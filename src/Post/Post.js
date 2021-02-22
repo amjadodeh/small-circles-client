@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import { LoggedInContext } from '../Context/LoggedInContext';
 import { UsersContext } from '../Context/UsersContext';
@@ -32,7 +33,9 @@ const Post = (props) => {
   if (props.sharedWithCircle) {
     return (
       <div className="post">
-        <div>{postUser.username}</div>
+        <div>
+          <Link to={`/account/${postUser.id}`}>{postUser.username}</Link>
+        </div>
         {props.content}
         <div>Shared with Circle</div>
       </div>
@@ -42,7 +45,9 @@ const Post = (props) => {
   if (props.public) {
     return (
       <div className="post">
-        <div>{postUser.username}</div>
+        <div>
+          <Link to={`/account/${postUser.id}`}>{postUser.username}</Link>
+        </div>
         {props.content}
         <div>Public Post</div>
       </div>

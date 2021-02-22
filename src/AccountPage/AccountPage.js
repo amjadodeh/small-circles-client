@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 import { LoggedInContext } from '../Context/LoggedInContext';
 import { UsersContext } from '../Context/UsersContext';
@@ -15,9 +15,14 @@ const AccountPage = (props) => {
   const [showPrivatePosts, setShowPrivatePosts] = useState(() => false);
 
   const location = useLocation();
+  const history = useHistory();
 
   const handleShowPrivatePosts = () => {
     setShowPrivatePosts((showPrivatePosts) => !showPrivatePosts);
+  };
+
+  const handleClickBack = () => {
+    history.goBack();
   };
 
   const userId = Number(location.pathname.replace('/account/', ''));
@@ -68,11 +73,17 @@ const AccountPage = (props) => {
     return (
       <>
         <TopBar currentPage={user.username} />
+        <button onClick={handleClickBack}>Back</button>
         <img
           className="account-page-profile-picture"
           src={user.profile_picture}
           alt="Profile picture"
         />
+        {loggedIn.friends.includes(userId) ? (
+          <button>Friends</button>
+        ) : (
+          <button>Send Friend Request</button>
+        )}
         <hr className="account-page-hr" />
         <div className="account-page-your-posts-div">My Posts</div>
         <br />
