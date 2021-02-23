@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory, Link } from 'react-router-dom';
 
 import { LoggedInContext } from '../Context/LoggedInContext';
 import { UsersContext } from '../Context/UsersContext';
@@ -49,7 +49,11 @@ const AccountPage = (props) => {
               alt="Profile picture"
             />
 
-            <button className="account-page-edit-profile">Edit Profile</button>
+            <Link to={`/edit-profile/${loggedIn.id}`}>
+              <button className="account-page-edit-profile">
+                Edit Profile
+              </button>
+            </Link>
 
             <hr className="account-page-hr" />
 
