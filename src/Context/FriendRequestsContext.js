@@ -7,10 +7,12 @@ export const FriendRequestsProvider = (props) => {
     {
       from: 2,
       to: 4,
+      status: 'Pending',
     },
     {
       from: 4,
       to: 1,
+      status: 'Pending',
     },
   ]);
   return (

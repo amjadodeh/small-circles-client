@@ -4,6 +4,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { LoggedInContext } from '../Context/LoggedInContext';
 import { UsersContext } from '../Context/UsersContext';
 import TopBar from '../TopBar/TopBar';
+import FriendRequestButton from '../FriendRequestButton/FriendRequestButton';
 import PostList from '../PostList/PostList';
 import Nav from '../Nav/Nav';
 import './AccountPage.css';
@@ -79,13 +80,11 @@ const AccountPage = (props) => {
           src={user.profile_picture}
           alt="Profile picture"
         />
-        {loggedIn.friends.includes(userId) ? (
-          <button>Friends</button>
-        ) : (
-          <button>Send Friend Request</button>
-        )}
+        <FriendRequestButton userId={userId} />
         <hr className="account-page-hr" />
-        <div className="account-page-your-posts-div">My Posts</div>
+        <div className="account-page-your-posts-div">
+          {user.username}'s Posts
+        </div>
         <br />
         <PostList userId={user.id} />
         <Nav />

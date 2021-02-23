@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { LoggedInContext } from '../Context/LoggedInContext';
 import { UsersContext } from '../Context/UsersContext';
+import FriendRequestButton from '../FriendRequestButton/FriendRequestButton';
 import './UserList.css';
 
 const UserList = (props) => {
@@ -16,13 +17,9 @@ const UserList = (props) => {
         (user) =>
           user.username.toLowerCase().includes(props.search.toLowerCase()) &&
           user.id !== loggedIn.id && (
-            <div className="userlist-user-container" key={isSecureContext.id}>
+            <div className="userlist-user-container" key={user.id}>
               <Link to={`/account/${user.id}`}>{user.username}</Link>
-              {loggedIn.friends.includes(user.id) ? (
-                <button>Friends</button>
-              ) : (
-                <button>Send Friend Request</button>
-              )}
+              <FriendRequestButton userId={user.id} />
             </div>
           )
       ) || 'nothing here'

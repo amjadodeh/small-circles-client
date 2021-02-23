@@ -11,6 +11,7 @@ import ExplorePage from './ExplorePage/ExplorePage';
 import AddPostPage from './AddPostPage/AddPostPage';
 import MessagesPage from './MessagesPage/MessagesPage';
 import AccountPage from './AccountPage/AccountPage';
+import ActivityPage from './ActivityPage/ActivityPage';
 import './App.css';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                 <Route path="/add-post" component={AddPostPage} />
                 <Route path="/messages" component={MessagesPage} />
                 <Route path="/account/:userId" component={AccountPage} />
+                <Route path="/activity" component={ActivityPage} />
                 <Route path="/" component={HomePage} />
               </Switch>
             ) : (
