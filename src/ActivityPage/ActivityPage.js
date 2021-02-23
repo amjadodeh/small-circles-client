@@ -34,7 +34,9 @@ const ActivityPage = () => {
       );
       setFriendRequests(
         friendRequests.map((request) =>
-          request.from === requestUserId && request.to === loggedIn.id
+          request.from === requestUserId &&
+          request.to === loggedIn.id &&
+          request.status === 'Pending'
             ? { ...request, status: 'Accepted' }
             : request
         )

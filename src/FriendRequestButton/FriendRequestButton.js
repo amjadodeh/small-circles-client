@@ -15,15 +15,15 @@ const FriendRequestButton = (props) => {
       request.to === props.userId &&
       request.status === 'Pending'
   )
-    ? 'Cancel Friend Request'
+    ? !loggedIn.friends.includes(props.userId) && 'Cancel Friend Request'
     : friendRequests.find(
         (request) =>
           request.from === props.userId &&
           request.to === loggedIn.id &&
           request.status === 'Pending'
       )
-    ? 'Accept Friend Request?'
-    : 'Send Friend Request';
+    ? !loggedIn.friends.includes(props.userId) && 'Accept Friend Request?'
+    : !loggedIn.friends.includes(props.userId) && 'Send Friend Request';
 
   const [friendRequestText, setFriendRequestText] = useState(
     () => onMountFriendRequestText
@@ -46,7 +46,9 @@ const FriendRequestButton = (props) => {
         );
         setFriendRequests(
           friendRequests.map((request) =>
-            request.from === props.userId && request.to === loggedIn.id
+            request.from === props.userId &&
+            request.to === loggedIn.id &&
+            request.status === 'Pending'
               ? { ...request, status: 'Accepted' }
               : request
           )
@@ -115,7 +117,7 @@ const FriendRequestButton = (props) => {
         )
       );
 
-      // return setFriendRequestText('Send Friend Request');
+      return setFriendRequestText('Send Friend Request');
     }
   };
 
