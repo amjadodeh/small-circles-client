@@ -29,6 +29,8 @@ const ActivityPage = () => {
         users.map((user) =>
           user.id === loggedIn.id
             ? { ...user, friends: [...user.friends, requestUserId] }
+            : user.id === requestUserId
+            ? { ...user, friends: [...user.friends, loggedIn.id] }
             : user
         )
       );

@@ -41,6 +41,8 @@ const FriendRequestButton = (props) => {
           users.map((user) =>
             user.id === loggedIn.id
               ? { ...user, friends: [...user.friends, props.userId] }
+              : user.id === props.userId
+              ? { ...user, friends: [...user.friends, loggedIn.id] }
               : user
           )
         );
