@@ -94,6 +94,8 @@ const AccountPage = (props) => {
         <Nav />
       </>
     );
+  } else {
+    return <>{history.push('/')}</>;
   }
 };
 
