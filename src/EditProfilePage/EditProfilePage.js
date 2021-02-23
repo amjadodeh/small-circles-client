@@ -21,7 +21,7 @@ const EditProfilePage = () => {
   const history = useHistory();
 
   const checkUrl = (url) => {
-    return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
+    return url.match(/\.(jpeg|jpg|png)$/) != null;
   };
 
   const isValid = () => {
@@ -54,6 +54,18 @@ const EditProfilePage = () => {
 
   const handleClickSave = () => {
     if (isValid()) {
+      setLoggedIn({
+        ...loggedIn,
+        username: username,
+        profile_picture: profilePicture,
+      });
+      setUsers(
+        users.map((user) =>
+          user.id === loggedIn.id
+            ? { ...user, username: username, profile_picture: profilePicture }
+            : user
+        )
+      );
       history.push(`/account/${loggedIn.id}`);
     }
   };
