@@ -21,7 +21,7 @@
   text-decoration-style: dotted;
 }
 
-.account-page-private-posts-button {
+.account-page-more-options-button {
   position: absolute;
   right: 0;
 }
@@ -29,4 +29,9 @@
 .account-page-edit-profile {
   display: flex;
   margin: auto;
+}
+
+.account-page-delete-error {
+  color: #ff0000;
+  font-size: 14px;
 }
