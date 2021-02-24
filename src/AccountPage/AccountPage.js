@@ -94,11 +94,11 @@ const AccountPage = (props) => {
           </>
         ) : showAccountSettings ? (
           <>
-            <button onClick={handleShowAccountSettings}>back</button>
-            <br />
-            <br />
             {!signOutStart && !deletionStart && (
               <>
+                <button onClick={handleShowAccountSettings}>back</button>
+                <br />
+                <br />
                 <button onClick={handleClickSignOut}>Sign Out</button>
                 <button onClick={handleClickDeleteAccount}>
                   Delete Account
@@ -108,6 +108,7 @@ const AccountPage = (props) => {
 
             {signOutStart && (
               <>
+                <div>Sign out now?</div>
                 <button onClick={() => handleClickSignOut(false)}>no</button>
                 <button onClick={() => handleClickSignOut(true)}>yes</button>
               </>
