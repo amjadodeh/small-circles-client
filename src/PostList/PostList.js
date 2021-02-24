@@ -60,6 +60,7 @@ const PostList = (props) => {
         ) : (
           post.private &&
           post.user_id === props.userId &&
+          post.private.includes(loggedIn.id) &&
           post.private.length > 2 && (
             <Post
               key={post.id}
