@@ -4,6 +4,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { LoggedInContext } from '../Context/LoggedInContext';
 import { UsersContext } from '../Context/UsersContext';
 import { FriendRequestsContext } from '../Context/FriendRequestsContext';
+import { API_BASE_URL } from '../config';
 import TopBar from '../TopBar/TopBar';
 import Nav from '../Nav/Nav';
 import './ActivityPage.css';

@@ -3,6 +3,7 @@ import { useContext, useState } from 'react';
 import { LoggedInContext } from '../Context/LoggedInContext';
 import { UsersContext } from '../Context/UsersContext';
 import { PostsContext } from '../Context/PostsContext';
+import { API_BASE_URL } from '../config';
 import TopBar from '../TopBar/TopBar';
 import PostList from '../PostList/PostList';
 import Nav from '../Nav/Nav';
