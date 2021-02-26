@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 
 import { UsersContext } from '../Context/UsersContext';
 import { LoggedInContext } from '../Context/LoggedInContext';
+import { API_BASE_URL } from '../config';
 import './LogInForm.css';
 
 const LogInForm = () => {
@@ -43,19 +44,33 @@ const LogInForm = () => {
       const user = users.find((user) => user.username === username);
 
       if (user) {
-        if (password === user.password) {
-          setValidationError('');
-          setLoggedIn({
-            id: user.id,
-            username: user.username,
-            profile_picture: user.profile_picture,
-            friends: user.friends,
+        fetch(`${API_BASE_URL}/users/login/${user.id}`, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify({ password }),
+        })
+          .then((res) => {
+            if (!res.ok) return res.json().then((e) => Promise.reject(e));
+            return res.json();
+          })
+          .then((response) => {
+            if (response) {
+              return setLoggedIn({
+                id: user.id,
+                username: user.username,
+                profile_picture: user.profile_picture,
+                friends: user.friends,
+              });
+            }
+          })
+          .catch((error) => {
+            console.error({ error });
+            return setValidationError('Incorrect password');
           });
-        } else {
-          setValidationError('Incorrect password');
-        }
       } else {
-        setValidationError('This user does not exist');
+        return setValidationError('This user does not exist');
       }
     }
   };

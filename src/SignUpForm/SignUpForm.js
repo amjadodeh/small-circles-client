@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 
 import { UsersContext } from '../Context/UsersContext';
 import { LoggedInContext } from '../Context/LoggedInContext';
+import { API_BASE_URL } from '../config';
 import './SignUpForm.css';
 
 const SignUpForm = () => {
@@ -53,24 +54,31 @@ const SignUpForm = () => {
       const password = signUp.password;
 
       const newUserSignUp = {
-        id: users.length + 1,
         username,
         password,
-        profile_picture:
-          'https://images.pexels.com/photos/772478/pexels-photo-772478.jpeg',
-        friends: [],
       };
 
       setValidationError('');
-      setUsers([...users, newUserSignUp]);
 
-      setLoggedIn({
-        id: users.length + 1,
-        username,
-        profile_picture:
-          'https://images.pexels.com/photos/772478/pexels-photo-772478.jpeg',
-        friends: [],
-      });
+      fetch(`${API_BASE_URL}/users`, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(newUserSignUp),
+      })
+        .then((res) => {
+          if (!res.ok) return res.json().then((e) => Promise.reject(e));
+          return res.json();
+        })
+        .then((response) => {
+          setUsers([...users, response]);
+          setLoggedIn({ ...response });
+          return response;
+        })
+        .catch((error) => {
+          console.error({ error });
+        });
     }
   };
 
