@@ -33,7 +33,7 @@ export const PostsProvider = (props) => {
       .catch((error) => {
         console.error({ error });
       });
-  });
+  }, [posts]);
 
   return (
     <PostsContext.Provider value={[posts, setPosts]}>

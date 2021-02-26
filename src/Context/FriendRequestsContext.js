@@ -24,7 +24,7 @@ export const FriendRequestsProvider = (props) => {
       .catch((error) => {
         console.error({ error });
       });
-  });
+  }, [friendRequests]);
 
   return (
     <FriendRequestsContext.Provider value={[friendRequests, setFriendRequests]}>
