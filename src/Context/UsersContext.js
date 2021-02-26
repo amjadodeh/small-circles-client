@@ -1,42 +1,40 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
+
+import { API_BASE_URL } from '../config';
 
 export const UsersContext = createContext();
 
 export const UsersProvider = (props) => {
-  const [users, setUsers] = useState(() => [
-    {
-      id: 1,
-      username: 'User1',
-      password: 'Pass1',
-      profile_picture:
-        'https://images.pexels.com/photos/772478/pexels-photo-772478.jpeg',
-      friends: [2, 3],
-    },
-    {
-      id: 2,
-      username: 'User2',
-      password: 'Pass2',
-      profile_picture:
-        'https://images.pexels.com/photos/772478/pexels-photo-772478.jpeg',
-      friends: [1, 3],
-    },
-    {
-      id: 3,
-      username: 'User3',
-      password: 'Pass3',
-      profile_picture:
-        'https://images.pexels.com/photos/772478/pexels-photo-772478.jpeg',
-      friends: [1, 2],
-    },
-    {
-      id: 4,
-      username: 'User4',
-      password: 'Pass4',
-      profile_picture:
-        'https://images.pexels.com/photos/772478/pexels-photo-772478.jpeg',
-      friends: [],
-    },
-  ]);
+  const [users, setUsers] = useState(() => []);
+
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/users`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
+      .then((res) => {
+        if (!res.ok) return res.json().then((e) => Promise.reject(e));
+        return res.json();
+      })
+      .then((response) => {
+        return setUsers(
+          response.map((user) => ({
+            id: user.id,
+            username: user.username,
+            profile_picture: user.profile_picture,
+            friends: user.friends
+              ? user.friends.split(',').map((NaN) => Number(NaN))
+              : [],
+          }))
+        );
+      })
+      .catch((error) => {
+        console.error({ error });
+      });
+  });
+
   return (
     <UsersContext.Provider value={[users, setUsers]}>
       {props.children}

@@ -1,20 +1,31 @@
 import { createContext, useState } from 'react';
 
+import { API_BASE_URL } from '../config';
+
 export const FriendRequestsContext = createContext();
 
 export const FriendRequestsProvider = (props) => {
-  const [friendRequests, setFriendRequests] = useState(() => [
-    {
-      from: 2,
-      to: 4,
-      status: 'Pending',
-    },
-    {
-      from: 4,
-      to: 1,
-      status: 'Pending',
-    },
-  ]);
+  const [friendRequests, setFriendRequests] = useState(() => []);
+
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/friendRequests`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
+      .then((res) => {
+        if (!res.ok) return res.json().then((e) => Promise.reject(e));
+        return res.json();
+      })
+      .then((response) => {
+        return setFriendRequests(response);
+      })
+      .catch((error) => {
+        console.error({ error });
+      });
+  });
+
   return (
     <FriendRequestsContext.Provider value={[friendRequests, setFriendRequests]}>
       {props.children}
