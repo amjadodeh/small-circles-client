@@ -33,7 +33,7 @@ export const UsersProvider = (props) => {
       .catch((error) => {
         console.error({ error });
       });
-  }, [users]);
+  }, []);
 
   return (
     <UsersContext.Provider value={[users, setUsers]}>
