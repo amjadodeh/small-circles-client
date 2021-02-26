@@ -72,8 +72,17 @@ const SignUpForm = () => {
           return res.json();
         })
         .then((response) => {
-          setUsers([...users, response]);
-          setLoggedIn({ ...response });
+          setUsers([
+            ...users,
+            {
+              ...response,
+              friends: [],
+            },
+          ]);
+          setLoggedIn({
+            ...response,
+            friends: [],
+          });
           return response;
         })
         .catch((error) => {

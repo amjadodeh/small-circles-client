@@ -61,7 +61,9 @@ const LogInForm = () => {
                 id: user.id,
                 username: user.username,
                 profile_picture: user.profile_picture,
-                friends: user.friends,
+                friends: user.friends
+                  ? user.friends.split(',').map((NaN) => Number(NaN))
+                  : [],
               });
             }
           })
