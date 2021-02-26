@@ -26,7 +26,7 @@ const ActivityPage = () => {
       headers: {
         'content-type': 'application/json',
       },
-      body: JSON.stringify(reqBody),
+      ...(reqBody && { body: JSON.stringify(reqBody) }),
     })
       .then((res) => {
         if (!res.ok) return res.json().then((e) => Promise.reject(e));
