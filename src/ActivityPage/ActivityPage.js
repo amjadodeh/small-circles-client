@@ -19,50 +19,104 @@ const ActivityPage = () => {
     history.goBack();
   };
 
+  const fetchHelper = (method, endpoint, id, reqBody) => {
+    fetch(`${API_BASE_URL}/${endpoint}/${id}`, {
+      method: `${method.toUpperCase()}`,
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(reqBody),
+    })
+      .then((res) => {
+        if (!res.ok) return res.json().then((e) => Promise.reject(e));
+        return res.json();
+      })
+      .then((response) => {
+        if (endpoint === 'users' && id === loggedIn.id) {
+          return setUsers(
+            users.map((user) =>
+              user.id === loggedIn.id
+                ? { ...user, friends: loggedIn.friends }
+                : user
+            )
+          );
+        } else if (endpoint === 'users') {
+          return setUsers(
+            users.map((user) =>
+              user.id === id
+                ? { ...user, friends: [...user.friends, loggedIn.id] }
+                : user
+            )
+          );
+        }
+
+        if (endpoint === 'friendRequests' && method === 'patch') {
+          return setFriendRequests(
+            friendRequests.map((request) =>
+              request.from === Number(id.split('-')[0]) &&
+              request.to === loggedIn.id &&
+              request.status === 'Pending'
+                ? { ...request, status: reqBody.request_status }
+                : request
+            )
+          );
+        } else if (endpoint === 'friendRequests' && method === 'delete') {
+          return setFriendRequests(
+            friendRequests.filter(
+              (request) =>
+                request.from !== loggedIn.id ||
+                request.to !== Number(id.split('-')[1]) ||
+                request.status !== 'Pending'
+            )
+          );
+        }
+      })
+      .catch((error) => {
+        console.error({ error });
+      });
+  };
+
   const handleClickAcceptOrDeny = (clicked, requestUserId) => {
     if (clicked === 'Accept') {
       setLoggedIn({
         ...loggedIn,
         friends: [...loggedIn.friends, requestUserId],
       });
-      setUsers(
-        users.map((user) =>
-          user.id === loggedIn.id
-            ? { ...user, friends: [...user.friends, requestUserId] }
-            : user.id === requestUserId
-            ? { ...user, friends: [...user.friends, loggedIn.id] }
-            : user
-        )
-      );
-      setFriendRequests(
-        friendRequests.map((request) =>
-          request.from === requestUserId &&
-          request.to === loggedIn.id &&
-          request.status === 'Pending'
-            ? { ...request, status: 'Accepted' }
-            : request
-        )
+      fetchHelper('patch', 'users', loggedIn.id, {
+        friends: loggedIn.friends.toString(),
+      });
+      fetchHelper('patch', 'users', requestUserId, {
+        friends: [
+          ...users.find((user) => user.id === requestUserId).friends,
+          requestUserId,
+        ].toString(),
+      });
+      fetchHelper(
+        'patch',
+        'friendRequests',
+        `${requestUserId}-${loggedIn.id}`,
+        {
+          request_status: 'Accepted',
+        }
       );
     }
 
     if (clicked === 'Deny') {
-      setFriendRequests(
-        friendRequests.map((request) =>
-          request.from === requestUserId && request.to === loggedIn.id
-            ? { ...request, status: 'Denied' }
-            : request
-        )
+      fetchHelper(
+        'patch',
+        'friendRequests',
+        `${requestUserId}-${loggedIn.id}`,
+        {
+          request_status: 'Denied',
+        }
       );
     }
 
     if (clicked === 'Cancel') {
-      setFriendRequests(
-        friendRequests.filter(
-          (request) =>
-            request.to !== requestUserId ||
-            request.from !== loggedIn.id ||
-            request.status !== 'Pending'
-        )
+      fetchHelper(
+        'delete',
+        'friendRequests',
+        `${loggedIn.id}-${requestUserId}`
       );
     }
   };

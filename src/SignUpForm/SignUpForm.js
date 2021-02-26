@@ -79,11 +79,10 @@ const SignUpForm = () => {
               friends: [],
             },
           ]);
-          setLoggedIn({
+          return setLoggedIn({
             ...response,
             friends: [],
           });
-          return response;
         })
         .catch((error) => {
           console.error({ error });

@@ -25,15 +25,34 @@ const MessagesPage = () => {
   };
 
   const handleClickSend = (friendId) => {
-    setPosts([
-      ...posts,
-      {
-        id: posts.length + 1,
-        content: message,
-        private: [loggedIn.id, friendId],
-        user_id: loggedIn.id,
+    const newPost = {
+      content: message,
+      private: [loggedIn.id, friendId],
+      user_id: loggedIn.id,
+    };
+
+    fetch(`${API_BASE_URL}/posts`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
       },
-    ]);
+      body: JSON.stringify(newPost),
+    })
+      .then((res) => {
+        if (!res.ok) return res.json().then((e) => Promise.reject(e));
+        return res.json();
+      })
+      .then((response) => {
+        return setPosts([
+          ...posts,
+          {
+            ...response,
+          },
+        ]);
+      })
+      .catch((error) => {
+        console.error({ error });
+      });
   };
 
   return (
