@@ -31,7 +31,23 @@ const FriendRequestButton = (props) => {
   );
   const [friendedText, setFriendedText] = useState(() => 'Friended');
 
-  const fetchHelper = (method, endpoint, id, reqBody) => {
+  const requestId = props.requestId
+    ? props.requestId
+    : (friendRequests.find(
+        (request) =>
+          ((request.from === loggedIn.id && request.to === props.userId) ||
+            (request.from === props.userId && request.to === loggedIn.id)) &&
+          request.status === 'Pending'
+      ) &&
+        friendRequests.find(
+          (request) =>
+            ((request.from === loggedIn.id && request.to === props.userId) ||
+              (request.from === props.userId && request.to === loggedIn.id)) &&
+            request.status === 'Pending'
+        ).id) ||
+      null;
+
+  const fetchHelper = (method, endpoint, id, reqBody, other) => {
     fetch(`${API_BASE_URL}/${endpoint}/${id}`, {
       method: `${method.toUpperCase()}`,
       headers: {
@@ -41,21 +57,18 @@ const FriendRequestButton = (props) => {
     })
       .then((res) => {
         if (!res.ok) return res.json().then((e) => Promise.reject(e));
+        if (endpoint === 'friendRequests' && method !== 'post') {
+          return res;
+        }
         return res.json();
       })
       .then((response) => {
-        if (endpoint === 'users' && id === loggedIn.id && method === 'patch') {
+        if (endpoint === 'users') {
           return setUsers(
             users.map((user) =>
-              user.id === loggedIn.id
-                ? { ...user, friends: loggedIn.friends }
+              user.id === id
+                ? { ...user, friends: [...user.friends, other] }
                 : user
-            )
-          );
-        } else if (endpoint === 'users' && method === 'patch') {
-          return setUsers(
-            users.map((user) =>
-              user.id === id ? { ...user, friends: reqBody.friends } : user
             )
           );
         }
@@ -63,31 +76,21 @@ const FriendRequestButton = (props) => {
         if (endpoint === 'friendRequests' && method === 'patch') {
           return setFriendRequests(
             friendRequests.map((request) =>
-              request.from === Number(id.split('-')[0]) &&
-              request.to === loggedIn.id &&
-              request.status === 'Pending'
+              request.id === id
                 ? { ...request, status: reqBody.request_status }
                 : request
             )
           );
-        } else if (endpoint === 'friendRequests' && method === 'delete') {
+        }
+
+        if (endpoint === 'friendRequests' && method === 'delete') {
           return setFriendRequests(
-            friendRequests.filter(
-              (request) =>
-                request.from !== loggedIn.id ||
-                request.to !== Number(id.split('-')[1]) ||
-                request.status !== 'Pending'
-            )
+            friendRequests.filter((request) => request.id !== id)
           );
-        } else if (endpoint === 'friendRequests' && method === 'post') {
-          setFriendRequests([
-            ...friendRequests,
-            {
-              from: loggedIn.id,
-              to: props.userId,
-              status: 'Pending',
-            },
-          ]);
+        }
+
+        if (endpoint === 'friendRequests' && method === 'post') {
+          return setFriendRequests([...friendRequests, response]);
         }
       })
       .catch((error) => {
@@ -102,23 +105,35 @@ const FriendRequestButton = (props) => {
           ...loggedIn,
           friends: [...loggedIn.friends, props.userId],
         });
-
-        fetchHelper('patch', 'users', loggedIn.id, {
-          friends: loggedIn.friends.toString(),
-        });
-        fetchHelper('patch', 'users', props.userId, {
-          friends: [
-            ...users.find((user) => user.id === props.userId).friends,
-            props.userId,
-          ].toString(),
-        });
+        fetchHelper(
+          'patch',
+          'users',
+          loggedIn.id,
+          {
+            friends: [...loggedIn.friends, props.userId].toString(),
+          },
+          props.userId
+        );
+        fetchHelper(
+          'patch',
+          'users',
+          props.userId,
+          {
+            friends: [
+              ...users.find((user) => user.id === props.userId).friends,
+              loggedIn.id,
+            ].toString(),
+          },
+          loggedIn.id
+        );
         fetchHelper(
           'patch',
           'friendRequests',
-          `${props.userId}-${loggedIn.id}`,
+          requestId,
           {
             request_status: 'Accepted',
-          }
+          },
+          props.userId
         );
 
         return setFriendedText('Friended');
@@ -128,10 +143,11 @@ const FriendRequestButton = (props) => {
         fetchHelper(
           'patch',
           'friendRequests',
-          `${props.userId}-${loggedIn.id}`,
+          requestId,
           {
             request_status: 'Denied',
-          }
+          },
+          props.userId
         );
         return setFriendRequestText('Send Friend Request');
       }
@@ -146,7 +162,7 @@ const FriendRequestButton = (props) => {
     }
 
     if (friendRequestText === 'Cancel Friend Request') {
-      fetchHelper('delete', 'friendRequests', `${loggedIn.id}-${props.userId}`);
+      fetchHelper('delete', 'friendRequests', requestId);
       return setFriendRequestText('Send Friend Request');
     }
 
@@ -163,7 +179,9 @@ const FriendRequestButton = (props) => {
       });
 
       fetchHelper('patch', 'users', loggedIn.id, {
-        friends: loggedIn.friends.toString(),
+        friends: loggedIn.friends
+          .filter((friendId) => friendId !== props.userId)
+          .toString(),
       });
 
       fetchHelper('patch', 'users', props.userId, {

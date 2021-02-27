@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import { LoggedInContext } from '../Context/LoggedInContext';
 import { UsersContext } from '../Context/UsersContext';
+import { API_BASE_URL } from '../config';
 import './EditProfilePage.css';
 
 const EditProfilePage = () => {
@@ -19,6 +20,36 @@ const EditProfilePage = () => {
   const [validationError, setValidationError] = useState(() => '');
 
   const history = useHistory();
+
+  const fetchHelper = () => {
+    fetch(`${API_BASE_URL}/users/${loggedIn.id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: username,
+        profile_picture: profilePicture,
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) return res.json().then((e) => Promise.reject(e));
+        return res;
+      })
+      .then((response) => {
+        setUsers(
+          users.map((user) =>
+            user.id === loggedIn.id
+              ? { ...user, username: username, profile_picture: profilePicture }
+              : user
+          )
+        );
+        return history.push(`/account/${loggedIn.id}`);
+      })
+      .catch((error) => {
+        console.error({ error });
+      });
+  };
 
   const checkUrl = (url) => {
     return url.match(/\.(jpeg|jpg|png)$/) != null;
@@ -59,14 +90,7 @@ const EditProfilePage = () => {
         username: username,
         profile_picture: profilePicture,
       });
-      setUsers(
-        users.map((user) =>
-          user.id === loggedIn.id
-            ? { ...user, username: username, profile_picture: profilePicture }
-            : user
-        )
-      );
-      history.push(`/account/${loggedIn.id}`);
+      fetchHelper();
     }
   };
 

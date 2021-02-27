@@ -3,6 +3,7 @@ import { useLocation, useHistory, Link } from 'react-router-dom';
 
 import { LoggedInContext } from '../Context/LoggedInContext';
 import { UsersContext } from '../Context/UsersContext';
+import { API_BASE_URL } from '../config';
 import TopBar from '../TopBar/TopBar';
 import FriendRequestButton from '../FriendRequestButton/FriendRequestButton';
 import PostList from '../PostList/PostList';
@@ -36,6 +37,25 @@ const AccountPage = (props) => {
     setShowAccountSettings((showAccountSettings) => !showAccountSettings);
   };
 
+  const fetchDeleteLoggedInHelper = (id) => {
+    fetch(`${API_BASE_URL}/users/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
+      .then((res) => {
+        if (!res.ok) return res.json().then((e) => Promise.reject(e));
+        return res.json();
+      })
+      .then((response) => {
+        return setUsers(users.filter((user) => user.id !== id));
+      })
+      .catch((error) => {
+        console.error({ error });
+      });
+  };
+
   const handleClickSignOut = (yes) => {
     if (!signOutStart) {
       return setSignOutStart(true);
@@ -61,7 +81,7 @@ const AccountPage = (props) => {
 
     if (DELETE === 'DELETE ACCOUNT') {
       if (deletionInput === loggedIn.username) {
-        setUsers(users.filter((user) => user.id !== loggedIn.id));
+        fetchDeleteLoggedInHelper(loggedIn.id);
         setLoggedIn(false);
         return history.push('/');
       } else {

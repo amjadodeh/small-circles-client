@@ -43,7 +43,8 @@ const AddPostPage = () => {
     e.preventDefault();
     const newPost = {
       content: content,
-      private: privatePost === [] ? null : privatePost.toString(),
+      ...(privatePost &&
+        privatePost !== [] && { private: privatePost.toString() }),
       user_id: loggedIn.id,
     };
 
@@ -63,6 +64,9 @@ const AddPostPage = () => {
           ...posts,
           {
             ...response,
+            private: response.private
+              ? response.private.split(',').map((NaN) => Number(NaN))
+              : false,
           },
         ]);
       })
