@@ -9,6 +9,7 @@
   height: 150px;
   width: 150px;
   margin: 0 auto;
+  margin-top: 10px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -24,7 +25,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #ffffff1a;
   z-index: 2;
 }
 
@@ -33,19 +34,96 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  width: 90%;
-  border: 1px solid #d9d9d9;
+  width: 80%;
   border-radius: 10px;
   position: absolute;
-  background-color: #fff;
+  background-color: #15202b;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 3;
   max-width: 500px;
+  text-align: center;
 }
 
 .edit-profile-validation-error {
   color: #ff0000;
+  font-size: 14px;
+}
+
+.edit-profile-cancel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  padding: 8px 15px 4px 15px;
+  background-color: #15202b;
+  border: none;
+}
+
+.edit-profile-save {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 5;
+  padding: 8px 15px 4px 15px;
+  background-color: #15202b;
+  border: none;
+}
+
+.edit-profile-change-profile-picture-btn {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
+  background-color: #15202b;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.edit-profile-profile-picture-input {
+  width: 90%;
+  max-width: 500px;
+  border-radius: 60px;
+  background-color: #253341;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.edit-profile-back-btn {
+  position: relative;
+  background-color: #15202b;
+  border: none;
+  float: left;
+  bottom: 5px;
+}
+
+.edit-profile-profile-picture-label-div {
+  margin-bottom: 10px;
+}
+
+.edit-profile-username-label-div {
+  margin-bottom: 5px;
+  margin-left: 20px;
+}
+
+.edit-profile-username-container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: auto;
+}
+
+.edit-profile-username-input {
+  width: 90%;
+  max-width: 500px;
+  border-radius: 60px;
+  background-color: #253341;
+  color: #fff;
+  border: none;
+  padding: 10px;
   font-size: 14px;
 }

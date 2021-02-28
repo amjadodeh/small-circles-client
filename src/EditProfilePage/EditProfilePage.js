@@ -1,9 +1,12 @@
 import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { IoCloseOutline, IoCheckmarkOutline } from 'react-icons/io5';
+import { BiArrowBack } from 'react-icons/bi';
 
 import { LoggedInContext } from '../Context/LoggedInContext';
 import { UsersContext } from '../Context/UsersContext';
 import { API_BASE_URL } from '../config';
+import TopBar from '../TopBar/TopBar';
 import './EditProfilePage.css';
 
 const EditProfilePage = () => {
@@ -112,9 +115,14 @@ const EditProfilePage = () => {
 
   return (
     <div>
+      <TopBar currentPage="Edit Profile" />
       <div className="edit-profile-return-buttons">
-        <button onClick={handleClickCancel}>Cancel</button>
-        <button onClick={handleClickSave}>Save</button>
+        <button className="edit-profile-save" onClick={handleClickSave}>
+          <IoCheckmarkOutline size="2.4em" color="#3acc15" title="Save" />
+        </button>
+        <button className="edit-profile-cancel" onClick={handleClickCancel}>
+          <IoCloseOutline size="2.4em" color="#f42279" title="Cancel" />
+        </button>
       </div>
       <div>
         <img
@@ -122,19 +130,30 @@ const EditProfilePage = () => {
           src={profilePicture}
           alt="Profile picture"
         />
-        <button onClick={handleShowChangeProfilePicture}>
+        <button
+          className="edit-profile-change-profile-picture-btn"
+          onClick={handleShowChangeProfilePicture}
+        >
           Change Profile Picture
         </button>
         {showChangeProfilePicture && (
           <div className="edit-profile-change-profile-picture-overlay">
             <div className="edit-profile-change-profile-picture-div">
               <div>
-                <button onClick={handleShowChangeProfilePicture}>Back</button>
+                <button
+                  className="edit-profile-back-btn"
+                  onClick={handleShowChangeProfilePicture}
+                >
+                  <BiArrowBack size="2em" color="#f45d22" title="Back" />
+                </button>
               </div>
               <div>
-                <label htmlFor="profile-picture">Profile Picture</label>
-                <br />
+                <div className="edit-profile-profile-picture-label-div">
+                  Profile Picture
+                </div>
+
                 <input
+                  className="edit-profile-profile-picture-input"
                   value={profilePicture}
                   placeholder="Profile Picture"
                   id="profile-picture"
@@ -149,14 +168,16 @@ const EditProfilePage = () => {
             </div>
           </div>
         )}
-        <br />
-        <label htmlFor="username">Username</label> <br />
-        <input
-          value={username}
-          placeholder="Username"
-          id="username"
-          onChange={handleChange}
-        />
+        <div className="edit-profile-username-container">
+          <div className="edit-profile-username-label-div">Username</div>
+          <input
+            className="edit-profile-username-input"
+            value={username}
+            placeholder="Username"
+            id="username"
+            onChange={handleChange}
+          />
+        </div>
         {validationError && !showChangeProfilePicture && (
           <div className="edit-profile-validation-error">{validationError}</div>
         )}
