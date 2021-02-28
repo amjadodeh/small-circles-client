@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { BiArrowBack } from 'react-icons/bi';
 
@@ -17,6 +17,33 @@ const ActivityPage = () => {
   const [friendRequests, setFriendRequests] = useContext(FriendRequestsContext);
 
   const history = useHistory();
+
+  const updateFriendRequestsContext = () => {
+    fetch(`${API_BASE_URL}/friendRequests`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
+      .then((res) => {
+        if (!res.ok) return res.json().then((e) => Promise.reject(e));
+        return res.json();
+      })
+      .then((response) => {
+        return setFriendRequests(response);
+      })
+      .catch((error) => {
+        console.error({ error });
+      });
+  };
+
+  useEffect(() => {
+    const fetchInterval = setInterval(updateFriendRequestsContext, 1000);
+
+    return () => {
+      clearInterval(fetchInterval);
+    };
+  }, []);
 
   const handleClickBack = () => {
     history.goBack();

@@ -1,10 +1,11 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useLocation, useHistory, Link } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { BiArrowBack } from 'react-icons/bi';
 
 import { LoggedInContext } from '../Context/LoggedInContext';
 import { UsersContext } from '../Context/UsersContext';
+import { FriendRequestsContext } from '../Context/FriendRequestsContext';
 import { API_BASE_URL } from '../config';
 import TopBar from '../TopBar/TopBar';
 import FriendRequestButton from '../FriendRequestButton/FriendRequestButton';
@@ -15,6 +16,7 @@ import './AccountPage.css';
 const AccountPage = (props) => {
   const [loggedIn, setLoggedIn] = useContext(LoggedInContext);
   const [users, setUsers] = useContext(UsersContext);
+  const [friendRequests, setFriendRequests] = useContext(FriendRequestsContext);
 
   const [showMoreOptions, setShowMoreOptions] = useState(() => false);
   const [showPrivatePosts, setShowPrivatePosts] = useState(() => false);
@@ -26,6 +28,37 @@ const AccountPage = (props) => {
 
   const location = useLocation();
   const history = useHistory();
+
+  const userId = Number(location.pathname.replace('/account/', ''));
+  const user = users.find((user) => user.id === userId);
+
+  const updateFriendRequestsContext = () => {
+    fetch(`${API_BASE_URL}/friendRequests`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
+      .then((res) => {
+        if (!res.ok) return res.json().then((e) => Promise.reject(e));
+        return res.json();
+      })
+      .then((response) => {
+        return setFriendRequests(response);
+      })
+      .catch((error) => {
+        console.error({ error });
+      });
+  };
+
+  useEffect(() => {
+    if (user && loggedIn.id !== userId) {
+      const fetchInterval = setInterval(updateFriendRequestsContext, 1000);
+      return () => {
+        clearInterval(fetchInterval);
+      };
+    }
+  }, []);
 
   const handleShowMoreOptions = () => {
     setShowMoreOptions((showMoreOptions) => !showMoreOptions);
@@ -99,9 +132,6 @@ const AccountPage = (props) => {
   const handleClickBack = () => {
     history.goBack();
   };
-
-  const userId = Number(location.pathname.replace('/account/', ''));
-  const user = users.find((user) => user.id === userId);
 
   if (loggedIn.id === userId) {
     return (
