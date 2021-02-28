@@ -1,6 +1,7 @@
 .nav {
   padding: 1% 0;
-  background-color: #aaa;
+  background-color: #15202b;
+  border-top: 2px solid #38444d;
   position: fixed;
   z-index: 4;
   left: 0;
@@ -10,6 +11,43 @@
   justify-content: space-around;
 }
 
-button {
+.nav-btn-link {
+  background-color: #15202b;
+  padding: 0 15px;
+}
+
+.nav-btn {
   padding: 0;
+  background-color: #15202b;
+  border: none;
+  height: 100%;
+  padding: 7px;
+  border-radius: 50%;
+}
+
+.nav-btn:active {
+  background-color: #2b1a15;
+}
+
+.nav-add-post-btn {
+  position: fixed;
+  right: 15px;
+  bottom: 65px;
+  background-color: #f45d22;
+  border: none;
+  border-radius: 50%;
+  padding: 18px;
+  margin: 0;
+}
+
+.nav-add-post-btn:active {
+  background-color: #843e26;
+}
+
+.nav-btn-link > * {
+  color: #fff;
+}
+
+.nav-btn-active-link > * {
+  color: #f45d22;
 }
