@@ -18,7 +18,10 @@ const UserList = (props) => {
           user.username.toLowerCase().includes(props.search.toLowerCase()) &&
           user.id !== loggedIn.id && (
             <div className="userlist-user-container" key={user.id}>
-              <Link to={`/account/${user.id}`}>{user.username}</Link>
+              <Link to={`/account/${user.id}`} className="userlist-user-info">
+                <img src={user.profile_picture} />
+                {user.username}
+              </Link>
               <FriendRequestButton userId={user.id} />
             </div>
           )

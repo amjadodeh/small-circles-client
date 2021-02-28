@@ -1,4 +1,36 @@
-.explore-page-type-filter {
+.explore-page-search-div {
+  border-radius: 60px;
+  width: 70%;
+  margin: auto;
+  background-color: #253341;
+  color: #fff;
+  border: none;
+  padding-left: 20px;
+  font-size: 14px;
   display: flex;
   justify-content: space-around;
+  align-items: center;
+}
+
+.explore-page-search-input {
+  background-color: #253341;
+  color: #fff;
+  border: none;
+  padding: 10px;
+}
+
+.explore-page-type-filter {
+  width: 100%;
+  margin: 20px auto 0 auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.explore-page-type-filter > * {
+  width: 100%;
+  border-radius: 0;
+  border: none;
+  padding: 10px;
+  background-color: #15202b;
+  color: #fff;
 }

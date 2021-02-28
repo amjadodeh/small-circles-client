@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import { IoSearchOutline } from 'react-icons/io5';
 
 import { PostsContext } from '../Context/PostsContext';
 import TopBar from '../TopBar/TopBar';
@@ -11,16 +12,10 @@ const ExplorePage = () => {
   const [posts, setPosts] = useContext(PostsContext);
 
   const [search, setSearch] = useState('');
-  const [searchClicked, setSearchClicked] = useState(false);
   const [typeFilter, setTypeFilter] = useState(() => 'Posts');
 
   const handleChange = (e) => {
     setSearch(e.target.value);
-  };
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    setSearchClicked(true);
   };
 
   const handleChangeTypeFilter = (type) => {
@@ -31,19 +26,37 @@ const ExplorePage = () => {
     <>
       <TopBar currentPage="Explore" />
 
-      <input
-        value={search}
-        onChange={handleChange}
-        placeholder="Search for posts"
-      />
-      <button onClick={handleSearch}>Search</button>
-
-      <br />
-      <br />
+      <div className="explore-page-search-div">
+        <IoSearchOutline />
+        <input
+          className="explore-page-search-input"
+          value={search}
+          onChange={handleChange}
+          placeholder={
+            typeFilter === 'Posts'
+              ? 'Search for posts...'
+              : 'Search for users...'
+          }
+        />
+      </div>
 
       <div className="explore-page-type-filter">
-        <button onClick={() => handleChangeTypeFilter('Posts')}>Posts</button>
-        <button onClick={() => handleChangeTypeFilter('Users')}>Users</button>
+        <button
+          style={{
+            borderBottom: typeFilter === 'Posts' && '4px solid #f45d22',
+          }}
+          onClick={() => handleChangeTypeFilter('Posts')}
+        >
+          Posts
+        </button>
+        <button
+          style={{
+            borderBottom: typeFilter === 'Users' && '4px solid #f45d22',
+          }}
+          onClick={() => handleChangeTypeFilter('Users')}
+        >
+          Users
+        </button>
       </div>
 
       <br />
