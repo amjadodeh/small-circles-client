@@ -4,6 +4,7 @@ import { LoggedInContext } from '../Context/LoggedInContext';
 import { UsersContext } from '../Context/UsersContext';
 import { FriendRequestsContext } from '../Context/FriendRequestsContext';
 import { API_BASE_URL } from '../config';
+import './FriendRequestButton.css';
 
 const FriendRequestButton = (props) => {
   const [loggedIn, setLoggedIn] = useContext(LoggedInContext);
@@ -200,16 +201,27 @@ const FriendRequestButton = (props) => {
       <div>
         {friendRequestText === 'Accept Friend Request?' ? (
           <>
-            <div>{friendRequestText}</div>
-            <button onClick={() => handleClickFriendRequestButton('Deny')}>
-              Deny
-            </button>
-            <button onClick={() => handleClickFriendRequestButton('Accept')}>
-              Accept
-            </button>
+            <div className="friended-request-text-div">{friendRequestText}</div>
+            <div className="friended-request-accept-deny-div">
+              <button
+                className="unfriend-request-button"
+                onClick={() => handleClickFriendRequestButton('Deny')}
+              >
+                Deny
+              </button>
+              <button
+                className="friended-request-button"
+                onClick={() => handleClickFriendRequestButton('Accept')}
+              >
+                Accept
+              </button>
+            </div>
           </>
         ) : (
-          <button onClick={handleClickFriendRequestButton}>
+          <button
+            className="send-friend-request-button"
+            onClick={handleClickFriendRequestButton}
+          >
             {friendRequestText}
           </button>
         )}
@@ -220,7 +232,15 @@ const FriendRequestButton = (props) => {
   if (loggedIn.friends.includes(props.userId)) {
     return (
       <div>
-        <button onClick={handleClickFriendRequestButton}>{friendedText}</button>
+        <button
+          className={
+            (friendedText === 'Friended' && `friended-request-button`) ||
+            (friendedText === 'Unfriend' && `unfriend-request-button`)
+          }
+          onClick={handleClickFriendRequestButton}
+        >
+          {friendedText}
+        </button>
       </div>
     );
   }

@@ -3,7 +3,9 @@
   object-position: center;
   height: 150px;
   width: 150px;
-  margin: 0 auto;
+  margin: auto;
+  margin-top: 65px;
+  margin-bottom: 20px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -22,16 +24,94 @@
 }
 
 .account-page-more-options-button {
-  position: absolute;
+  position: fixed;
+  top: 0;
   right: 0;
+  z-index: 5;
+  padding: 9px 15px 4px 15px;
+  background-color: #15202b;
+  border: none;
 }
 
 .account-page-edit-profile {
   display: flex;
+  justify-content: center;
+  max-width: 100px;
   margin: auto;
+  margin-bottom: 20px;
+  background-color: #15202b;
+  color: #e0e0e0;
+  padding: 10px;
+  border: 2px solid #e0e0e0;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 15px;
 }
 
 .account-page-delete-error {
+  text-align: center;
   color: #ff0000;
+  font-size: 14px;
+}
+
+.account-page-back-btn {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  padding: 9px 15px 4px 15px;
+  background-color: #15202b;
+  border: none;
+}
+
+.account-page-settings-top-button {
+  margin-top: -3px;
+}
+
+.account-page-settings-top-button,
+.account-page-settings-button {
+  width: 100%;
+  padding: 20px;
+  border-radius: 0;
+  background-color: #15202b;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  margin-bottom: -2px;
+  border: none;
+  border-top: 2px solid #38444d;
+  border-bottom: 2px solid #38444d;
+}
+
+.account-page-settings-top-button:active,
+.account-page-settings-button:active {
+  background-color: #192734;
+}
+
+.account-page-p {
+  padding-top: 10px;
+  text-align: center;
+  color: #8899a6;
+}
+
+.account-page-settings-text {
+  padding: 20px;
+  background-color: #15202b;
+  color: #fff;
+}
+
+.account-page-settings-account-username {
+  text-align: center;
+}
+
+.account-page-account-deletion-input {
+  display: flex;
+  margin: auto;
+  border-radius: 60px;
+  background-color: #253341;
+  color: #fff;
+  border: none;
+  padding: 20px;
   font-size: 14px;
 }

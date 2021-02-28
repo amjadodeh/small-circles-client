@@ -22,7 +22,9 @@ const UserList = (props) => {
                 <img src={user.profile_picture} />
                 {user.username}
               </Link>
-              <FriendRequestButton userId={user.id} />
+              <div className="userlist-friend-btn">
+                <FriendRequestButton userId={user.id} />
+              </div>
             </div>
           )
       ) || 'nothing here'

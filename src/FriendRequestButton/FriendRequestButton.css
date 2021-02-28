@@ -1,0 +1,57 @@
+.friended-request-button,
+.unfriend-request-button,
+.send-friend-request-button {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-bottom: 20px;
+  background-color: #15202b;
+  padding: 10px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.friended-request-button {
+  max-width: 100px;
+  color: #3acc15;
+  border: 2px solid #3acc15;
+}
+
+.friended-request-button:active {
+  background-color: #3acc15;
+  color: #fff;
+}
+
+.unfriend-request-button {
+  max-width: 100px;
+  color: #f42279;
+  border: 2px solid #f42279;
+}
+
+.unfriend-request-button:active {
+  background-color: #f42279;
+  color: #fff;
+}
+
+.send-friend-request-button {
+  color: #f45d22;
+  border: 2px solid #f45d22;
+}
+
+.send-friend-request-button:active {
+  background-color: #f45d22;
+  color: #fff;
+}
+
+.friended-request-text-div {
+  text-align: center;
+}
+
+.friended-request-accept-deny-div {
+  display: flex;
+  justify-content: center;
+  width: 150px;
+  margin: auto;
+  margin-top: 10px;
+}

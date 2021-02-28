@@ -1,5 +1,7 @@
 import { useContext, useState } from 'react';
 import { useLocation, useHistory, Link } from 'react-router-dom';
+import { FiSettings } from 'react-icons/fi';
+import { BiArrowBack } from 'react-icons/bi';
 
 import { LoggedInContext } from '../Context/LoggedInContext';
 import { UsersContext } from '../Context/UsersContext';
@@ -108,19 +110,38 @@ const AccountPage = (props) => {
 
         {showPrivatePosts ? (
           <>
-            <button onClick={handleShowPrivatePosts}>back</button>
-            <p>These posts can only be seen by you</p>
+            <button
+              className="account-page-back-btn"
+              onClick={handleShowPrivatePosts}
+            >
+              <BiArrowBack size="2.2em" color="#f45d22" title="Back" />
+            </button>
+            <p className="account-page-p">
+              These posts can only be seen by you
+            </p>
             <PostList private={true} />
           </>
         ) : showAccountSettings ? (
           <>
             {!signOutStart && !deletionStart && (
               <>
-                <button onClick={handleShowAccountSettings}>back</button>
-                <br />
-                <br />
-                <button onClick={handleClickSignOut}>Sign Out</button>
-                <button onClick={handleClickDeleteAccount}>
+                <button
+                  className="account-page-back-btn"
+                  onClick={handleShowAccountSettings}
+                >
+                  <BiArrowBack size="2.2em" color="#f45d22" title="Back" />
+                </button>
+
+                <button
+                  className="account-page-settings-top-button"
+                  onClick={handleClickSignOut}
+                >
+                  Sign Out
+                </button>
+                <button
+                  className="account-page-settings-button"
+                  onClick={handleClickDeleteAccount}
+                >
                   Delete Account
                 </button>
               </>
@@ -128,15 +149,25 @@ const AccountPage = (props) => {
 
             {signOutStart && (
               <>
-                <div>Sign out now?</div>
-                <button onClick={() => handleClickSignOut(false)}>no</button>
-                <button onClick={() => handleClickSignOut(true)}>yes</button>
+                <div className="account-page-settings-text">Sign out now?</div>
+                <button
+                  className="account-page-settings-button"
+                  onClick={() => handleClickSignOut(true)}
+                >
+                  Yes
+                </button>
+                <button
+                  className="account-page-settings-button"
+                  onClick={() => handleClickSignOut(false)}
+                >
+                  No
+                </button>
               </>
             )}
 
             {deletionStart && (
               <>
-                <div>
+                <div className="account-page-settings-text">
                   <span style={{ color: 'red' }}>PLEASE READ CAREFULLY:</span>
                   <br />
                   Deleting an account is <b>permanent</b>. Your account and{' '}
@@ -144,10 +175,14 @@ const AccountPage = (props) => {
                   <b>This CAN NOT be reversed!</b> If you understand and still
                   want to continue, enter your username below and submit.
                 </div>
-                <p style={{ color: 'gray' }}>
+                <p
+                  className="account-page-settings-account-username"
+                  style={{ color: 'gray' }}
+                >
                   <i>{loggedIn.username}</i>
                 </p>
                 <input
+                  className="account-page-account-deletion-input"
                   type="text"
                   placeholder="Enter username here"
                   id="account-page-account-deletion"
@@ -164,11 +199,16 @@ const AccountPage = (props) => {
                   </span>
                 )}
                 <br />
-                <button onClick={() => handleClickDeleteAccount('Cancel')}>
+                <button
+                  className="account-page-settings-button"
+                  onClick={() => handleClickDeleteAccount('Cancel')}
+                >
                   Cancel
                 </button>
                 <button
+                  className="account-page-settings-button"
                   onClick={() => handleClickDeleteAccount('DELETE ACCOUNT')}
+                  style={{ color: 'red' }}
                 >
                   DELETE ACCOUNT
                 </button>
@@ -177,16 +217,21 @@ const AccountPage = (props) => {
           </>
         ) : showMoreOptions ? (
           <>
-            <button onClick={handleShowMoreOptions}>back</button>
             <button
-              className="account-page-private-posts-button"
+              className="account-page-back-btn"
+              onClick={handleShowMoreOptions}
+            >
+              <BiArrowBack size="2.2em" color="#f45d22" title="Back" />
+            </button>
+            <button
+              className="account-page-settings-top-button"
               onClick={handleShowPrivatePosts}
             >
               Private Posts
             </button>
 
             <button
-              className="account-page-account-settings-button"
+              className="account-page-settings-button"
               onClick={handleShowAccountSettings}
             >
               Account Settings
@@ -198,7 +243,7 @@ const AccountPage = (props) => {
               className="account-page-more-options-button"
               onClick={handleShowMoreOptions}
             >
-              More Options
+              <FiSettings size="2.2em" color="#f45d22" title="More Options" />
             </button>
 
             <img
@@ -207,10 +252,11 @@ const AccountPage = (props) => {
               alt="Profile picture"
             />
 
-            <Link to={`/edit-profile/${loggedIn.id}`}>
-              <button className="account-page-edit-profile">
-                Edit Profile
-              </button>
+            <Link
+              to={`/edit-profile/${loggedIn.id}`}
+              className="account-page-edit-profile"
+            >
+              Edit Profile
             </Link>
 
             <hr className="account-page-hr" />
@@ -230,7 +276,9 @@ const AccountPage = (props) => {
     return (
       <>
         <TopBar currentPage={user.username} />
-        <button onClick={handleClickBack}>Back</button>
+        <button className="account-page-back-btn" onClick={handleClickBack}>
+          <BiArrowBack size="2.2em" color="#f45d22" title="Back" />
+        </button>
         <img
           className="account-page-profile-picture"
           src={user.profile_picture}
