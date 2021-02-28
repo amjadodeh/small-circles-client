@@ -6,11 +6,72 @@
 
 .messages-page-message-div {
   padding: 1% 0;
-  background-color: #aaa;
+  border-top: 2px solid #38444d;
+  background-color: #15202b;
   width: 100%;
   position: fixed;
   bottom: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+.messages-page-input {
+  border-radius: 60px;
+  background-color: #253341;
+  color: #fff;
+  border: none;
+  padding-left: 20px;
+  font-size: 14px;
+}
+
+.messages-page-send-btn {
+  height: 100%;
+  background-color: #15202b;
+  border: none;
+}
+
+.messages-page-back-btn {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  padding: 5px 10px;
+  background-color: #15202b;
+  border: none;
+}
+
+.messages-page-user-link-btn {
+  color: #fff;
+  text-decoration: none;
+}
+
+.messages-page-friendlist-div {
+  width: 100%;
+  border-radius: 0;
+  background-color: #15202b;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  margin-bottom: -21px;
+  border: none;
+  border-top: 2px solid #38444d;
+  border-bottom: 2px solid #38444d;
+}
+
+.messages-page-friendlist-div:active {
+  background-color: #192734;
+}
+
+.messages-page-friendlist-div > img {
+  width: 50px;
+  border-radius: 50%;
+  padding: 10px 15px;
+}
+
+.messages-page-p {
+  padding-top: 10px;
+  text-align: center;
+  color: #8899a6;
 }

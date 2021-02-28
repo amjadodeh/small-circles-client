@@ -1,13 +1,16 @@
 .top-bar,
 .top-bar-home {
-  padding: 1% 0;
-  background-color: #aaa;
+  padding: 13px 0;
+  font-size: 18px;
+  background-color: #15202b;
+  border-bottom: 2px solid #38444d;
   position: fixed;
   z-index: 4;
   left: 0;
   right: 0;
   top: 0;
   display: flex;
+
   /* justify-content: space-around; */
 }
 

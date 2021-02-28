@@ -12,8 +12,8 @@
   max-width: 80%;
   margin: 5px 10px;
   padding: 10px;
-  border: 1px solid #000;
   border-radius: 10px 10px 0 10px;
+  background-color: #f45d22;
 }
 
 .left-message {
@@ -21,6 +21,6 @@
   max-width: 80%;
   margin: 5px 10px;
   padding: 10px;
-  border: 1px solid #000;
   border-radius: 10px 10px 10px 0;
+  background-color: #f45d22;
 }

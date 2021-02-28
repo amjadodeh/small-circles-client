@@ -1,4 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { BiArrowBack, BiSend } from 'react-icons/bi';
 
 import { LoggedInContext } from '../Context/LoggedInContext';
 import { UsersContext } from '../Context/UsersContext';
@@ -97,15 +99,24 @@ const MessagesPage = () => {
     <>
       {showMessages === false && (
         <>
-          <TopBar currentPage="Messages" />{' '}
-          <p>One to one posts are shown here.</p> <Nav />
+          <TopBar currentPage="Messages" />
+          <p className="messages-page-p">
+            One to one posts are shown here as messages.
+          </p>
+          <Nav />
         </>
       )}
 
       {loggedIn.friends.map((friendId, i) => (
         <div key={i}>
           {showMessages === false && (
-            <button onClick={() => handleShowMessages(friendId)}>
+            <button
+              className="messages-page-friendlist-div"
+              onClick={() => handleShowMessages(friendId)}
+            >
+              <img
+                src={users.find((user) => user.id === friendId).profile_picture}
+              />
               {users.find((user) => user.id === friendId).username}
             </button>
           )}
@@ -114,10 +125,20 @@ const MessagesPage = () => {
             <>
               <TopBar
                 currentPage={
-                  users.find((user) => user.id === friendId).username
+                  <Link
+                    to={`/account/${friendId}`}
+                    className="messages-page-user-link-btn"
+                  >
+                    {users.find((user) => user.id === friendId).username}
+                  </Link>
                 }
               />
-              <button onClick={handleShowMessages}>back</button>
+              <button
+                className="messages-page-back-btn"
+                onClick={handleShowMessages}
+              >
+                <BiArrowBack size="2.5em" color="#f45d22" title="Back" />
+              </button>
               <br />
               <div className="messages-page-postlist-div">
                 <PostList
@@ -126,11 +147,21 @@ const MessagesPage = () => {
               </div>
               <div className="messages-page-message-div">
                 <input
+                  className="messages-page-input"
                   placeholder="Message..."
                   value={message}
                   onChange={handleChangeMessage}
                 />
-                <button onClick={() => handleClickSend(friendId)}>send</button>
+                <button
+                  className="messages-page-send-btn"
+                  onClick={() => handleClickSend(friendId)}
+                >
+                  <BiSend
+                    size="3em"
+                    color={message ? '#f45d22' : '#843e26'}
+                    title="Send"
+                  />
+                </button>
               </div>
             </>
           )}
