@@ -8,31 +8,41 @@ export const PostsProvider = (props) => {
   const [posts, setPosts] = useState(() => []);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/posts`, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json',
-      },
-    })
-      .then((res) => {
-        if (!res.ok) return res.json().then((e) => Promise.reject(e));
-        return res.json();
+    const updateContext = () => {
+      fetch(`${API_BASE_URL}/posts`, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+        },
       })
-      .then((response) => {
-        return setPosts(
-          response.map((post) => ({
-            id: post.id,
-            content: post.content,
-            private: post.private
-              ? post.private.split(',').map((NaN) => Number(NaN))
-              : false,
-            user_id: post.user_id,
-          }))
-        );
-      })
-      .catch((error) => {
-        console.error({ error });
-      });
+        .then((res) => {
+          if (!res.ok) return res.json().then((e) => Promise.reject(e));
+          return res.json();
+        })
+        .then((response) => {
+          return setPosts(
+            response.map((post) => ({
+              id: post.id,
+              content: post.content,
+              private: post.private
+                ? post.private.split(',').map((NaN) => Number(NaN))
+                : false,
+              user_id: post.user_id,
+            }))
+          );
+        })
+        .catch((error) => {
+          console.error({ error });
+        });
+    };
+
+    updateContext();
+
+    const fetchInterval = setInterval(updateContext, 10000);
+
+    return () => {
+      clearInterval(fetchInterval);
+    };
   }, []);
 
   return (
