@@ -10,14 +10,15 @@
   right: 0;
   top: 0;
   display: flex;
-
-  /* justify-content: space-around; */
-}
-
-.top-bar {
   justify-content: space-around;
 }
 
-.top-bar-home {
-  justify-content: space-between;
+.top-bar-home-activity {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 5;
+  padding: 9px 15px 4px 15px;
+  background-color: #15202b;
+  border: none;
 }

@@ -137,7 +137,7 @@ const MessagesPage = () => {
                 className="messages-page-back-btn"
                 onClick={handleShowMessages}
               >
-                <BiArrowBack size="2.5em" color="#f45d22" title="Back" />
+                <BiArrowBack size="2.2em" color="#f45d22" title="Back" />
               </button>
               <br />
               <div className="messages-page-postlist-div">
@@ -157,7 +157,7 @@ const MessagesPage = () => {
                   onClick={() => handleClickSend(friendId)}
                 >
                   <BiSend
-                    size="3em"
+                    size="2.2em"
                     color={message ? '#f45d22' : '#843e26'}
                     title="Send"
                   />

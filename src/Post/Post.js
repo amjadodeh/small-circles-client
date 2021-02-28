@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { MdPublic } from 'react-icons/md';
+import { FaLock, FaUserFriends } from 'react-icons/fa';
 
 import { LoggedInContext } from '../Context/LoggedInContext';
 import { UsersContext } from '../Context/UsersContext';
@@ -17,7 +19,9 @@ const Post = (props) => {
       <div className="post">
         <div>{loggedIn.id === props.postUserId}</div>
         {props.content}
-        <div>Only for you</div>
+        <div className="post-post-info">
+          <FaLock size="1em" title="Only for you" />
+        </div>
       </div>
     );
   }
@@ -33,11 +37,14 @@ const Post = (props) => {
   if (props.sharedWithCircle) {
     return (
       <div className="post">
-        <div>
-          <Link to={`/account/${postUser.id}`}>{postUser.username}</Link>
-        </div>
+        <Link to={`/account/${postUser.id}`} className="post-user-info">
+          <img src={postUser.profile_picture} />
+          {postUser.username}
+        </Link>
         {props.content}
-        <div>Shared with Circle</div>
+        <div className="post-post-info">
+          <FaUserFriends size="1.1em" title="Shared with Circle" />
+        </div>
       </div>
     );
   }
@@ -45,11 +52,14 @@ const Post = (props) => {
   if (props.public) {
     return (
       <div className="post">
-        <div>
-          <Link to={`/account/${postUser.id}`}>{postUser.username}</Link>
-        </div>
+        <Link to={`/account/${postUser.id}`} className="post-user-info">
+          <img src={postUser.profile_picture} />
+          {postUser.username}
+        </Link>
         {props.content}
-        <div>Public Post</div>
+        <div className="post-post-info">
+          <MdPublic size="1.2em" title="Public Post" />
+        </div>
       </div>
     );
   }
