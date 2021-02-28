@@ -38,7 +38,7 @@ export const PostsProvider = (props) => {
 
     updateContext();
 
-    const fetchInterval = setInterval(updateContext, 10000);
+    const fetchInterval = setInterval(updateContext, 30000);
 
     return () => {
       clearInterval(fetchInterval);

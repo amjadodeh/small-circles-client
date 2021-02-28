@@ -38,7 +38,7 @@ export const UsersProvider = (props) => {
 
     updateContext();
 
-    const fetchInterval = setInterval(updateContext, 10000);
+    const fetchInterval = setInterval(updateContext, 20000);
 
     return () => {
       clearInterval(fetchInterval);
