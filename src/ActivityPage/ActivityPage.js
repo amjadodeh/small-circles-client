@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
+import { BiArrowBack } from 'react-icons/bi';
 
 import { LoggedInContext } from '../Context/LoggedInContext';
 import { UsersContext } from '../Context/UsersContext';
@@ -49,13 +50,18 @@ const ActivityPage = () => {
   return (
     <>
       <TopBar currentPage="Activity" />
-      <button onClick={handleClickBack}>Back</button>
+      <button className="activity-page-back-btn" onClick={handleClickBack}>
+        <BiArrowBack size="2.2em" color="#f45d22" title="Back" />
+      </button>
       {friendRequests.map((request, i) =>
         request.from === loggedIn.id ? (
           <div className="activity-page-activity" key={i}>
             <span>
               You sent a friend request to{' '}
-              <Link to={`/account/${request.to}`}>
+              <Link
+                to={`/account/${request.to}`}
+                className="activity-page-username"
+              >
                 {users.find((user) => user.id === request.to).username}
               </Link>
             </span>
@@ -74,16 +80,21 @@ const ActivityPage = () => {
           request.to === loggedIn.id && (
             <div className="activity-page-activity" key={i}>
               <span>
-                <Link to={`/account/${request.from}`}>
+                <Link
+                  to={`/account/${request.from}`}
+                  className="activity-page-username"
+                >
                   {users.find((user) => user.id === request.from).username}
                 </Link>{' '}
                 sent you a friend request
               </span>
               {request.status === 'Pending' ? (
-                <FriendRequestButton
-                  userId={request.from}
-                  requestId={request.id}
-                />
+                <div className="activity-page-friend-button">
+                  <FriendRequestButton
+                    userId={request.from}
+                    requestId={request.id}
+                  />
+                </div>
               ) : (
                 <div>status: {request.status}</div>
               )}

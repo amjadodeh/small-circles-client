@@ -3,6 +3,26 @@
   flex-direction: column;
   margin: 5px 5%;
   padding: 10px;
-  border: 1px solid #000;
+  border: 2px solid #38444d;
   border-radius: 10px;
+  background-color: #15202b;
+}
+
+.activity-page-username {
+  color: #f45d22;
+  text-decoration: none;
+}
+
+.activity-page-friend-button {
+  margin-top: 10px;
+}
+
+.activity-page-back-btn {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  padding: 9px 15px 4px 15px;
+  background-color: #15202b;
+  border: none;
 }
