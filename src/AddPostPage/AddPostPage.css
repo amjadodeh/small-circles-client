@@ -1,0 +1,86 @@
+.add-post-page-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-post-page-private-post-checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.add-post-page-p {
+  padding-top: 10px;
+  text-align: center;
+  color: #8899a6;
+}
+
+.add-post-page-img {
+  width: 25px;
+  border-radius: 50%;
+  margin: 10px;
+}
+
+.add-post-page-ul {
+  margin-top: 270px;
+  margin-bottom: 150px;
+}
+
+.add-post-page-li {
+  display: flex;
+  align-items: center;
+}
+
+.add-post-page-div-top-friendlist {
+  margin: 15px auto 5px auto;
+  text-decoration: underline;
+}
+
+.add-post-page-input {
+  border-radius: 10px;
+  background-color: #253341;
+  color: #fff;
+  border: none;
+  padding: 15px;
+  font-size: 14px;
+  height: 150px;
+  font-size: 15px;
+}
+
+.add-post-page-post-btn {
+  width: 90%;
+  margin: auto;
+  padding: 20px;
+  border-radius: 60px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+  border: none;
+}
+
+.add-post-page-top-section {
+  background-color: #15202b;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  top: 49px;
+}
+
+.add-post-page-bottom-section {
+  background-color: #15202b;
+  position: fixed;
+  width: 100%;
+  padding-bottom: 18px;
+  bottom: 52px;
+}
+
+.add-post-page-error {
+  text-align: center;
+  color: #ff0000;
+  font-size: 14px;
+}

@@ -1,13 +1,13 @@
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { BiHome, BiMessageSquare } from 'react-icons/bi';
+import { BiHome, BiMessageSquare, BiPlus } from 'react-icons/bi';
 import { IoSearch } from 'react-icons/io5';
 import { RiAccountCircleLine } from 'react-icons/ri';
 
 import { LoggedInContext } from '../Context/LoggedInContext';
 import './Nav.css';
 
-const Nav = () => {
+const Nav = (props) => {
   const [loggedIn, setLoggedIn] = useContext(LoggedInContext);
 
   return (
@@ -51,11 +51,13 @@ const Nav = () => {
           </button>
         </NavLink>
       </nav>
-      <NavLink to="/add-post">
-        <button className="nav-add-post-btn">
-          <BiHome size="2em" color="#fff" title="Add Post" />
-        </button>
-      </NavLink>
+      {!props.noAddPostBtn && (
+        <NavLink to="/add-post">
+          <button className="nav-add-post-btn">
+            <BiPlus size="3.2em" color="#fff" title="Add Post" />
+          </button>
+        </NavLink>
+      )}
     </>
   );
 };
