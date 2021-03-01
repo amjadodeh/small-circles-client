@@ -27,3 +27,11 @@
   background-color: #15202b;
   border: none;
 }
+
+@media (min-width: 868px) {
+  .activity-page-back-btn {
+    margin: auto;
+    right: 639px;
+    top: 0px;
+  }
+}

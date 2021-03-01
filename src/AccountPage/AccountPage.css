@@ -36,7 +36,6 @@
   top: 0;
   right: 0;
   z-index: 5;
-  padding: 9px 15px 4px 15px;
   background-color: #15202b;
   border: none;
 }
@@ -67,7 +66,7 @@
   top: 0;
   left: 0;
   z-index: 5;
-  padding: 9px 15px 4px 15px;
+
   background-color: #15202b;
   border: none;
 }
@@ -131,18 +130,14 @@
 
   .account-page-more-options-button {
     margin: auto;
+    padding: 9px 15px 4px 15px;
     left: 643px;
     top: -10px;
   }
 
-  .activity-page-back-btn {
-    margin: auto;
-    right: 639px;
-    top: 0px;
-  }
-
   .account-page-back-btn {
     margin: auto;
+    padding: 9px 15px 4px 15px;
     right: 640px;
     top: -10px;
   }
