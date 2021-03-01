@@ -35,12 +35,13 @@
   margin: 5px auto;
   border-radius: 5px;
   color: #ffffff;
-  background-color: #ff9900;
-  border: 1px solid #ff9900;
+  background-color: #f45d22;
+  border: 1px solid #f45d22;
 }
 
 .login-form-submit-button:active {
-  background-color: #dd8500;
+  background-color: #843e26;
+  border: 1px solid #843e26;
 }
 
 .login-form-error {

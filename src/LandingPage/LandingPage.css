@@ -1,13 +1,13 @@
 .landing-page-container {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   margin-top: -50px;
-  height: 100vh;
-  width: 100vw;
+  height: 94.85vh;
 }
 
-.landing-page-content {
+.landing-top-section {
   width: 90%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,13 +15,96 @@
   margin: 0 auto;
 }
 
-.landing-hr {
-  width: 100%;
-  /* border: 1px solid #000; */
+.landing-bottom-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.landing-form-container {
+  padding: 10px;
+  border: 1px solid #38444d;
+  border-radius: 10px;
+}
+
+.landing-learn-more-div {
+  padding: 10px;
+  font-size: 15px;
+  margin: 20px;
+  background-color: #38444d;
+  border: 1px solid #38444d;
+  border-radius: 15px;
+  width: 80vw;
+  max-width: 375px;
+  height: 225px;
+}
+
+.landing-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.landing-page-img-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landing-page-sc-logo-orange {
+  padding-top: 100px;
+  margin-bottom: 10px;
+}
+
+.landing-page-sc-full-white {
+  margin-bottom: 30px;
+}
+
+.landing-change-form-btn {
+  background-color: #15202b;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: underline;
+  margin-bottom: 10px;
 }
 
 @media (min-width: 868px) {
   .landing-page-container {
-    width: 700px;
+    position: absolute;
+    background-color: #15202b;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .landing-top-section {
+    max-width: 800px;
+    /* height: 90%; */
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 200px auto 50px auto;
+  }
+
+  .landing-page-sc-logo-orange {
+    padding-top: 0;
+  }
+
+  .landing-page-sc-full-white {
+    margin-bottom: 120px;
+  }
+
+  .landing-bottom-section {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 95%;
+    margin: 0 auto;
   }
 }
