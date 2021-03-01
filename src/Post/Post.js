@@ -49,7 +49,7 @@ const Post = (props) => {
     );
   }
 
-  if (props.public) {
+  if (props.sharedWithFriends) {
     return (
       <div className="post">
         <Link to={`/account/${postUser.id}`} className="post-user-info">
@@ -58,7 +58,7 @@ const Post = (props) => {
         </Link>
         {props.content}
         <div className="post-post-info">
-          <MdPublic size="1.2em" title="Public Post" />
+          <MdPublic size="1.2em" title="Shared With Friends" />
         </div>
       </div>
     );

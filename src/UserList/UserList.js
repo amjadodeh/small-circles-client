@@ -12,7 +12,21 @@ const UserList = (props) => {
 
   // Search through public posts and posts shared with circle
   if (props.explore) {
-    return (
+    return users.find(
+      (user) =>
+        user.username.toLowerCase().includes(props.search.toLowerCase()) &&
+        user.id !== loggedIn.id && (
+          <div className="userlist-user-container" key={user.id}>
+            <Link to={`/account/${user.id}`} className="userlist-user-info">
+              <img src={user.profile_picture} />
+              {user.username}
+            </Link>
+            <div className="userlist-friend-btn">
+              <FriendRequestButton userId={user.id} />
+            </div>
+          </div>
+        )
+    ) ? (
       users.map(
         (user) =>
           user.username.toLowerCase().includes(props.search.toLowerCase()) &&
@@ -27,7 +41,11 @@ const UserList = (props) => {
               </div>
             </div>
           )
-      ) || 'nothing here'
+      )
+    ) : (
+      <div className="userlist-message">
+        <h2>No Results...</h2>
+      </div>
     );
   }
 };

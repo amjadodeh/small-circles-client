@@ -1,0 +1,35 @@
+.postlist-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.postlist-message div {
+  margin-bottom: 30px;
+  font-size: 15px;
+}
+
+.postlist-btn {
+  margin-bottom: 20px;
+  padding: 12px 18px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: #f45d22;
+  color: #fff;
+}
+
+.postlist-btn:active {
+  background-color: #843e26;
+}
+
+.postlist-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
