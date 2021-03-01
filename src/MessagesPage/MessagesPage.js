@@ -83,13 +83,14 @@ const MessagesPage = () => {
           return res.json();
         })
         .then((response) => {
-          return setPosts([
+          setPosts([
             ...posts,
             {
               ...response,
               private: response.private.split(',').map((NaN) => Number(NaN)),
             },
           ]);
+          return setMessage('');
         })
         .catch((error) => {
           console.error({ error });

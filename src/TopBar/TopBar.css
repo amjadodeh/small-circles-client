@@ -22,3 +22,20 @@
   background-color: #15202b;
   border: none;
 }
+
+@media (min-width: 868px) {
+  .top-bar,
+  .top-bar-home {
+    margin: auto;
+    border-left: 1px solid #38444d;
+    border-right: 1px solid #38444d;
+    width: 700px;
+  }
+
+  .top-bar-home-activity {
+    margin: auto;
+    left: 641px;
+    top: 0px;
+    border-right: 1px solid #38444d;
+  }
+}

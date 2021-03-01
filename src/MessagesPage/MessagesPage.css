@@ -5,7 +5,7 @@
 }
 
 .messages-page-message-div {
-  padding: 1% 0;
+  padding: 8px 0;
   border-top: 2px solid #38444d;
   background-color: #15202b;
   width: 100%;
@@ -17,6 +17,7 @@
 }
 
 .messages-page-input {
+  width: 70%;
   border-radius: 60px;
   background-color: #253341;
   color: #fff;
@@ -74,4 +75,16 @@
   padding-top: 10px;
   text-align: center;
   color: #8899a6;
+}
+
+@media (min-width: 868px) {
+  .messages-page-message-div {
+    width: 700px;
+  }
+
+  .messages-page-back-btn {
+    margin: auto;
+    right: 640px;
+    top: 0px;
+  }
 }

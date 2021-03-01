@@ -138,166 +138,170 @@ const AccountPage = (props) => {
       <>
         <TopBar currentPage={loggedIn.username} />
 
-        {showPrivatePosts ? (
-          <>
-            <button
-              className="account-page-back-btn"
-              onClick={handleShowPrivatePosts}
-            >
-              <BiArrowBack size="2.2em" color="#f45d22" title="Back" />
-            </button>
-            <p className="account-page-p">
-              These posts can only be seen by you
-            </p>
-            <PostList private={true} />
-          </>
-        ) : showAccountSettings ? (
-          <>
-            {!signOutStart && !deletionStart && (
-              <>
-                <button
-                  className="account-page-back-btn"
-                  onClick={handleShowAccountSettings}
-                >
-                  <BiArrowBack size="2.2em" color="#f45d22" title="Back" />
-                </button>
+        <div className="account-page-account-container">
+          {showPrivatePosts ? (
+            <>
+              <button
+                className="account-page-back-btn"
+                onClick={handleShowPrivatePosts}
+              >
+                <BiArrowBack size="2.2em" color="#f45d22" title="Back" />
+              </button>
+              <p className="account-page-p">
+                These posts can only be seen by you
+              </p>
+              <PostList private={true} />
+            </>
+          ) : showAccountSettings ? (
+            <>
+              {!signOutStart && !deletionStart && (
+                <>
+                  <button
+                    className="account-page-back-btn"
+                    onClick={handleShowAccountSettings}
+                  >
+                    <BiArrowBack size="2.2em" color="#f45d22" title="Back" />
+                  </button>
 
-                <button
-                  className="account-page-settings-top-button"
-                  onClick={handleClickSignOut}
-                >
-                  Sign Out
-                </button>
-                <button
-                  className="account-page-settings-button"
-                  onClick={handleClickDeleteAccount}
-                >
-                  Delete Account
-                </button>
-              </>
-            )}
+                  <button
+                    className="account-page-settings-top-button"
+                    onClick={handleClickSignOut}
+                  >
+                    Sign Out
+                  </button>
+                  <button
+                    className="account-page-settings-button"
+                    onClick={handleClickDeleteAccount}
+                  >
+                    Delete Account
+                  </button>
+                </>
+              )}
 
-            {signOutStart && (
-              <>
-                <div className="account-page-settings-text">Sign out now?</div>
-                <button
-                  className="account-page-settings-button"
-                  onClick={() => handleClickSignOut(true)}
-                >
-                  Yes
-                </button>
-                <button
-                  className="account-page-settings-button"
-                  onClick={() => handleClickSignOut(false)}
-                >
-                  No
-                </button>
-              </>
-            )}
+              {signOutStart && (
+                <>
+                  <div className="account-page-settings-text">
+                    Sign out now?
+                  </div>
+                  <button
+                    className="account-page-settings-button"
+                    onClick={() => handleClickSignOut(true)}
+                  >
+                    Yes
+                  </button>
+                  <button
+                    className="account-page-settings-button"
+                    onClick={() => handleClickSignOut(false)}
+                  >
+                    No
+                  </button>
+                </>
+              )}
 
-            {deletionStart && (
-              <>
-                <div className="account-page-settings-text">
-                  <span style={{ color: 'red' }}>PLEASE READ CAREFULLY:</span>
+              {deletionStart && (
+                <>
+                  <div className="account-page-settings-text">
+                    <span style={{ color: 'red' }}>PLEASE READ CAREFULLY:</span>
+                    <br />
+                    Deleting an account is <b>permanent</b>. Your account and{' '}
+                    <b>all data</b> linked to it will be lost forever.{' '}
+                    <b>This CAN NOT be reversed!</b> If you understand and still
+                    want to continue, enter your username below and submit.
+                  </div>
+                  <p
+                    className="account-page-settings-account-username"
+                    style={{ color: 'gray' }}
+                  >
+                    <i>{loggedIn.username}</i>
+                  </p>
+                  <input
+                    className="account-page-account-deletion-input"
+                    type="text"
+                    placeholder="Enter username here"
+                    id="account-page-account-deletion"
+                    name="account-page-account-deletion"
+                    value={deletionInput}
+                    style={{ textAlign: 'center' }}
+                    onChange={onChangeDeletionInput}
+                    required
+                  />
                   <br />
-                  Deleting an account is <b>permanent</b>. Your account and{' '}
-                  <b>all data</b> linked to it will be lost forever.{' '}
-                  <b>This CAN NOT be reversed!</b> If you understand and still
-                  want to continue, enter your username below and submit.
-                </div>
-                <p
-                  className="account-page-settings-account-username"
-                  style={{ color: 'gray' }}
-                >
-                  <i>{loggedIn.username}</i>
-                </p>
-                <input
-                  className="account-page-account-deletion-input"
-                  type="text"
-                  placeholder="Enter username here"
-                  id="account-page-account-deletion"
-                  name="account-page-account-deletion"
-                  value={deletionInput}
-                  style={{ textAlign: 'center' }}
-                  onChange={onChangeDeletionInput}
-                  required
-                />
-                <br />
-                {deleteError && (
-                  <span className="account-page-delete-error">
-                    {deleteError}
-                  </span>
-                )}
-                <br />
-                <button
-                  className="account-page-settings-button"
-                  onClick={() => handleClickDeleteAccount('Cancel')}
-                >
-                  Cancel
-                </button>
-                <button
-                  className="account-page-settings-button"
-                  onClick={() => handleClickDeleteAccount('DELETE ACCOUNT')}
-                  style={{ color: 'red' }}
-                >
-                  DELETE ACCOUNT
-                </button>
-              </>
-            )}
-          </>
-        ) : showMoreOptions ? (
-          <>
-            <button
-              className="account-page-back-btn"
-              onClick={handleShowMoreOptions}
-            >
-              <BiArrowBack size="2.2em" color="#f45d22" title="Back" />
-            </button>
-            <button
-              className="account-page-settings-top-button"
-              onClick={handleShowPrivatePosts}
-            >
-              Private Posts
-            </button>
+                  {deleteError && (
+                    <span className="account-page-delete-error">
+                      {deleteError}
+                    </span>
+                  )}
+                  <br />
+                  <button
+                    className="account-page-settings-button"
+                    onClick={() => handleClickDeleteAccount('Cancel')}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="account-page-settings-button"
+                    onClick={() => handleClickDeleteAccount('DELETE ACCOUNT')}
+                    style={{ color: 'red' }}
+                  >
+                    DELETE ACCOUNT
+                  </button>
+                </>
+              )}
+            </>
+          ) : showMoreOptions ? (
+            <>
+              <button
+                className="account-page-back-btn"
+                onClick={handleShowMoreOptions}
+              >
+                <BiArrowBack size="2.2em" color="#f45d22" title="Back" />
+              </button>
+              <button
+                className="account-page-settings-top-button"
+                onClick={handleShowPrivatePosts}
+              >
+                Private Posts
+              </button>
 
-            <button
-              className="account-page-settings-button"
-              onClick={handleShowAccountSettings}
-            >
-              Account Settings
-            </button>
-          </>
-        ) : (
-          <>
-            <button
-              className="account-page-more-options-button"
-              onClick={handleShowMoreOptions}
-            >
-              <FiSettings size="2.2em" color="#f45d22" title="More Options" />
-            </button>
+              <button
+                className="account-page-settings-button"
+                onClick={handleShowAccountSettings}
+              >
+                Account Settings
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                className="account-page-more-options-button"
+                onClick={handleShowMoreOptions}
+              >
+                <FiSettings size="2.2em" color="#f45d22" title="More Options" />
+              </button>
 
-            <img
-              className="account-page-profile-picture"
-              src={loggedIn.profile_picture}
-              alt="Profile picture"
-            />
+              <img
+                className="account-page-profile-picture"
+                src={loggedIn.profile_picture}
+                alt="Profile picture"
+              />
 
-            <Link
-              to={`/edit-profile/${loggedIn.id}`}
-              className="account-page-edit-profile"
-            >
-              Edit Profile
-            </Link>
+              <Link
+                to={`/edit-profile/${loggedIn.id}`}
+                className="account-page-edit-profile"
+              >
+                Edit Profile
+              </Link>
 
-            <hr className="account-page-hr" />
+              <hr className="account-page-hr" />
 
-            <div className="account-page-your-posts-div">My Posts</div>
+              <div className="account-page-your-posts-div">My Posts</div>
 
-            <br />
+              <br />
 
-            <PostList userId={loggedIn.id} />
-          </>
-        )}
+              <PostList userId={loggedIn.id} />
+            </>
+          )}
+        </div>
 
         <Nav />
       </>
@@ -306,21 +310,25 @@ const AccountPage = (props) => {
     return (
       <>
         <TopBar currentPage={user.username} />
-        <button className="account-page-back-btn" onClick={handleClickBack}>
-          <BiArrowBack size="2.2em" color="#f45d22" title="Back" />
-        </button>
-        <img
-          className="account-page-profile-picture"
-          src={user.profile_picture}
-          alt="Profile picture"
-        />
-        <FriendRequestButton userId={userId} />
-        <hr className="account-page-hr" />
-        <div className="account-page-your-posts-div">
-          {user.username}'s Posts
+
+        <div className="account-page-account-container">
+          <button className="account-page-back-btn" onClick={handleClickBack}>
+            <BiArrowBack size="2.2em" color="#f45d22" title="Back" />
+          </button>
+          <img
+            className="account-page-profile-picture"
+            src={user.profile_picture}
+            alt="Profile picture"
+          />
+          <FriendRequestButton userId={userId} />
+          <hr className="account-page-hr" />
+          <div className="account-page-your-posts-div">
+            {user.username}'s Posts
+          </div>
+          <br />
+          <PostList userId={user.id} />
         </div>
-        <br />
-        <PostList userId={user.id} />
+
         <Nav />
       </>
     );

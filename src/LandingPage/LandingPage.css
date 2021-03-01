@@ -15,11 +15,13 @@
   margin: 0 auto;
 }
 
-/* .landing-form-container { */
-/* nothing here yet */
-/* } */
-
 .landing-hr {
   width: 100%;
   /* border: 1px solid #000; */
+}
+
+@media (min-width: 868px) {
+  .landing-page-container {
+    width: 700px;
+  }
 }

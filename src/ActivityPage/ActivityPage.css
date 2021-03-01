@@ -1,4 +1,5 @@
 .activity-page-activity {
+  transform: translateY(20px);
   display: flex;
   flex-direction: column;
   margin: 5px 5%;

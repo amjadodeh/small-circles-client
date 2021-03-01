@@ -1,8 +1,16 @@
+.explore-page-search-container {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  background-color: #15202b;
+  margin: -131px auto auto auto;
+}
+
 .explore-page-search-div {
   border-radius: 60px;
   width: 70%;
   margin: auto;
-  margin-top: 60px;
+  margin-top: 35px;
   background-color: #253341;
   color: #fff;
   border: none;
@@ -36,4 +44,19 @@
   padding: 10px;
   background-color: #15202b;
   color: #fff;
+}
+
+.explore-page-list-div {
+  margin-top: 180px;
+  margin-bottom: 20px;
+  transform: translateY(20px);
+}
+
+@media (min-width: 868px) {
+  .explore-page-search-container {
+    transform: translateX(-1px);
+    width: 700px;
+    border-left: 1px solid #38444d;
+    border-right: 1px solid #38444d;
+  }
 }

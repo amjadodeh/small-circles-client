@@ -13,3 +13,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@media (min-width: 868px) {
+  body > * {
+    max-width: 700px;
+    margin: auto;
+    border-left: 1px solid #38444d;
+    border-right: 1px solid #38444d;
+    min-height: 94.96vh;
+    margin-top: -1px;
+  }
+}
