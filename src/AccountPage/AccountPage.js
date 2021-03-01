@@ -52,6 +52,32 @@ const AccountPage = (props) => {
   };
 
   useEffect(() => {
+    fetch(`${API_BASE_URL}/users`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
+      .then((res) => {
+        if (!res.ok) return res.json().then((e) => Promise.reject(e));
+        return res.json();
+      })
+      .then((response) => {
+        return setUsers(
+          response.map((user) => ({
+            id: user.id,
+            username: user.username,
+            profile_picture: user.profile_picture,
+            friends: user.friends
+              ? user.friends.split(',').map((NaN) => Number(NaN))
+              : [],
+          }))
+        );
+      })
+      .catch((error) => {
+        console.error({ error });
+      });
+
     if (user && loggedIn.id !== userId) {
       const fetchInterval = setInterval(updateFriendRequestsContext, 1000);
       return () => {
@@ -84,7 +110,17 @@ const AccountPage = (props) => {
         return res.json();
       })
       .then((response) => {
-        return setUsers(users.filter((user) => user.id !== id));
+        setLoggedIn({
+          ...loggedIn,
+          friends: loggedIn.friends.filter((friendId) => friendId !== id),
+        });
+        setUsers(users.filter((user) => user.id !== id));
+        return setUsers(
+          users.map((user) => ({
+            ...user,
+            friends: user.friends.filter((friendId) => friendId !== id),
+          }))
+        );
       })
       .catch((error) => {
         console.error({ error });
