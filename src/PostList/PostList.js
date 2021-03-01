@@ -54,9 +54,10 @@ const PostList = (props) => {
     if (
       posts.find((post) =>
         !post.private &&
-        users
+        (users
           .find((user) => user.id === post.user_id)
-          .friends.includes(loggedIn.id) &&
+          .friends.includes(loggedIn.id) ||
+          post.user_id === loggedIn.id) &&
         post.user_id === props.userId ? (
           <Post
             key={post.id}
@@ -85,11 +86,7 @@ const PostList = (props) => {
           .friends.includes(loggedIn.id)
       ) {
         return posts.map((post) =>
-          !post.private &&
-          users
-            .find((user) => user.id === post.user_id)
-            .friends.includes(loggedIn.id) &&
-          post.user_id === props.userId ? (
+          !post.private && post.user_id === props.userId ? (
             <Post
               key={post.id}
               sharedWithFriends={true}
@@ -114,11 +111,7 @@ const PostList = (props) => {
 
       if (props.userId === loggedIn.id) {
         return posts.map((post) =>
-          !post.private &&
-          users
-            .find((user) => user.id === post.user_id)
-            .friends.includes(loggedIn.id) &&
-          post.user_id === props.userId ? (
+          !post.private && post.user_id === props.userId ? (
             <Post
               key={post.id}
               sharedWithFriends={true}
@@ -159,7 +152,7 @@ const PostList = (props) => {
         <div className="postlist-message">
           <div>You have not shared any posts.</div>
           <Link to="/add-post" className="postlist-btn">
-            Add First Post!
+            Share First Post!
           </Link>
         </div>
       );
@@ -179,9 +172,10 @@ const PostList = (props) => {
     return posts.find((post) =>
       post.content.toLowerCase().includes(props.search.toLowerCase()) &&
       !post.private &&
-      users
+      (users
         .find((user) => user.id === post.user_id)
-        .friends.includes(loggedIn.id) ? (
+        .friends.includes(loggedIn.id) ||
+        post.user_id === loggedIn.id) ? (
         <Post
           key={post.id}
           sharedWithFriends={true}
@@ -205,9 +199,10 @@ const PostList = (props) => {
       posts.map((post) =>
         post.content.toLowerCase().includes(props.search.toLowerCase()) &&
         !post.private &&
-        users
+        (users
           .find((user) => user.id === post.user_id)
-          .friends.includes(loggedIn.id) ? (
+          .friends.includes(loggedIn.id) ||
+          post.user_id === loggedIn.id) ? (
           <Post
             key={post.id}
             sharedWithFriends={true}
@@ -239,9 +234,10 @@ const PostList = (props) => {
   if (props.home) {
     return posts.find((post) =>
       !post.private &&
-      users
+      (users
         .find((user) => user.id === post.user_id)
-        .friends.includes(loggedIn.id) ? (
+        .friends.includes(loggedIn.id) ||
+        post.user_id === loggedIn.id) ? (
         <Post
           key={post.id}
           sharedWithFriends={true}
@@ -263,9 +259,10 @@ const PostList = (props) => {
     ) ? (
       posts.map((post) =>
         !post.private &&
-        users
+        (users
           .find((user) => user.id === post.user_id)
-          .friends.includes(loggedIn.id) ? (
+          .friends.includes(loggedIn.id) ||
+          post.user_id === loggedIn.id) ? (
           <Post
             key={post.id}
             sharedWithFriends={true}
