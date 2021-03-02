@@ -48,6 +48,8 @@ const UserList = (props) => {
       </div>
     );
   }
+
+  return <></>;
 };
 
 export default UserList;

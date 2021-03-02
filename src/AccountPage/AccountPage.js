@@ -11,6 +11,7 @@ import TopBar from '../TopBar/TopBar';
 import FriendRequestButton from '../FriendRequestButton/FriendRequestButton';
 import PostList from '../PostList/PostList';
 import Nav from '../Nav/Nav';
+import HomePage from '../HomePage/HomePage';
 import './AccountPage.css';
 
 const AccountPage = (props) => {
@@ -369,7 +370,7 @@ const AccountPage = (props) => {
       </>
     );
   } else {
-    return <>{history.push('/')}</>;
+    return <HomePage />;
   }
 };
 

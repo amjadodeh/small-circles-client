@@ -63,6 +63,8 @@ const Post = (props) => {
       </div>
     );
   }
+
+  return <></>;
 };
 
 export default Post;

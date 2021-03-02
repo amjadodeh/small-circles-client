@@ -292,6 +292,8 @@ const PostList = (props) => {
       </div>
     );
   }
+
+  return <></>;
 };
 
 export default PostList;
