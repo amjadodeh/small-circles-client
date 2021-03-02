@@ -26,7 +26,7 @@
   right: 0;
   bottom: 0;
   background-color: #ffffff1a;
-  z-index: 2;
+  z-index: 6;
 }
 
 .edit-profile-change-profile-picture-div {
@@ -126,4 +126,16 @@
   border: none;
   padding: 10px;
   font-size: 14px;
+}
+
+@media (min-width: 868px) {
+  .edit-profile-cancel {
+    margin: auto;
+    right: 638px;
+  }
+
+  .edit-profile-save {
+    margin: auto;
+    left: 638px;
+  }
 }
