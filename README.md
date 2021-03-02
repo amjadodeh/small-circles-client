@@ -19,37 +19,35 @@ With Small Circles, your data is your data. With every post, you decide who can 
 
 Landing Page:
 
-![landing page](https://imgur.com/f6j06wO)
+![landing page](https://i.imgur.com/f6j06wO.png)
 
 Home Page:
 
-![home page](https://imgur.com/juqm7EF)
+![home page new user](https://i.imgur.com/juqm7EF.png)
+
+![home page](https://i.imgur.com/VfDX4cF.png)
 
 Explore Page:
 
-![explore page](https://imgur.com/6vcqkKb)
+![explore page](https://i.imgur.com/6vcqkKb.png)
 
-![explore page users](https://imgur.com/sNqPot2)
+![explore page users](https://i.imgur.com/sNqPot2.png)
 
 Messages Page:
 
-![messages page](https://imgur.com/91ZycR1)
+![messages page](https://i.imgur.com/91ZycR1.png)
 
-![messages page open](https://imgur.com/2Kepa57)
+![messages page open](https://i.imgur.com/2Kepa57.png)
 
 Account Page:
 
-![account page](https://imgur.com/3BnwHp2)
-
-Add Post Button:
-
-![add post button]()
+![account page](https://i.imgur.com/3BnwHp2.png)
 
 Add Post Page:
 
-![add post page](https://imgur.com/5xRjvNM)
+![add post page](https://i.imgur.com/5xRjvNM.png)
 
-![add post page private](https://imgur.com/j5YA26x)
+![add post page private](https://i.imgur.com/j5YA26x.png)
 
 ## Technology
 
