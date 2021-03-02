@@ -166,6 +166,7 @@ const MessagesPage = () => {
                   />
                 </button>
               </div>
+              <Nav />
             </>
           )}
 

@@ -95,8 +95,11 @@ const ActivityPage = () => {
             {request.status === 'Pending' ? (
               <>
                 <div>status: {request.status}</div>
-                <button onClick={() => handleClickCancel(request.id)}>
-                  Cancel
+                <button
+                  className="cancel-friend-request-button"
+                  onClick={() => handleClickCancel(request.id)}
+                >
+                  Cancel Friend Request
                 </button>
               </>
             ) : (
