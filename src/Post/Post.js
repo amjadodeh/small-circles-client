@@ -17,7 +17,6 @@ const Post = (props) => {
   if (props.private) {
     return (
       <div className="post">
-        <div>{loggedIn.id === props.postUserId}</div>
         {props.content}
         <div className="post-post-info">
           <FaLock size="1em" title="Only for you" />

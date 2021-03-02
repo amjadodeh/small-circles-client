@@ -21,7 +21,7 @@ const PostList = (props) => {
         post.private.length === 1 && (
           <Post
             key={post.id}
-            sharedWithFriends={true}
+            private={true}
             postUserId={post.user_id}
             content={post.content}
           />
