@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# Small Circles Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Small Circles is a social platform focused on giving you control of your data.
 
-## Available Scripts
+This repo is the front-end client, built in React. You can see the app live at [https://small-circles-client.vercel.app](https://small-circles-client.vercel.app)
 
-In the project directory, you can run:
+To check out the app, you can create a account or if you just want to view what the website looks like, you can use this demo account.
 
-### `npm start`
+#### Demo Account Details
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- username: DemoUser
+- password: DemoPass
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Introduction
 
-### `npm test`
+With Small Circles, your data is your data. With every post, you decide who can see your content. You can make a private post that only you can see, a post to be seen by all your friends, or select from your friend list to share to. You can even send direct messages to your friends!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Screenshots
 
-### `npm run build`
+Landing Page:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![landing page](https://imgur.com/f6j06wO)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Home Page:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![home page](https://imgur.com/juqm7EF)
 
-### `npm run eject`
+Explore Page:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![explore page](https://imgur.com/6vcqkKb)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![explore page users](https://imgur.com/sNqPot2)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Messages Page:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![messages page](https://imgur.com/91ZycR1)
 
-## Learn More
+![messages page open](https://imgur.com/2Kepa57)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Account Page:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![account page](https://imgur.com/3BnwHp2)
 
-### Code Splitting
+Add Post Button:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![add post button]()
 
-### Analyzing the Bundle Size
+Add Post Page:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![add post page](https://imgur.com/5xRjvNM)
 
-### Making a Progressive Web App
+![add post page private](https://imgur.com/j5YA26x)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Technology
 
-### Advanced Configuration
+#### Front End
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- React
+  - Create React App
+  - React Router
+- HTML5
+- CSS3 (scratch - no frameworks)
 
-### Deployment
+#### Testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Jest (smoke tests)
 
-### `npm run build` fails to minify
+#### Production
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Deployed via Vercel
+
+## Getting Started
+
+Run `npm install` to load dependencies
+
+Run `npm test` to ensure a stable build
+
+This is only the front end client, so to develop locally you'll need the backend server as well.
+
+To get the backend up and running see [https://github.com/amjadodeh/small-circles-api](https://github.com/amjadodeh/small-circles-api)
+
+Deployments are handled through Vercel and can be run via `npm run deploy`
