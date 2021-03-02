@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { UsersContext } from '../Context/UsersContext';
 import { LoggedInContext } from '../Context/LoggedInContext';
@@ -16,6 +17,8 @@ const LogInForm = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [validationError, setValidationError] = useState('');
+
+  const history = useHistory();
 
   const handleChangeLogIn = (e) => {
     setLogIn({ ...logIn, [e.target.name]: e.target.value });
@@ -57,12 +60,13 @@ const LogInForm = () => {
           })
           .then((response) => {
             if (response) {
-              return setLoggedIn({
+              setLoggedIn({
                 id: user.id,
                 username: user.username,
                 profile_picture: user.profile_picture,
                 friends: user.friends,
               });
+              return history.push('/home');
             }
           })
           .catch((error) => {

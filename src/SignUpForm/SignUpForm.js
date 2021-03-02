@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { UsersContext } from '../Context/UsersContext';
 import { LoggedInContext } from '../Context/LoggedInContext';
@@ -16,6 +17,8 @@ const SignUpForm = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [validationError, setValidationError] = useState('');
+
+  const history = useHistory();
 
   const handleChangeSignUp = (e) => {
     setSignUp({ ...signUp, [e.target.name]: e.target.value });
@@ -79,10 +82,11 @@ const SignUpForm = () => {
               friends: [],
             },
           ]);
-          return setLoggedIn({
+          setLoggedIn({
             ...response,
             friends: [],
           });
+          return history.push('/home');
         })
         .catch((error) => {
           console.error({ error });
