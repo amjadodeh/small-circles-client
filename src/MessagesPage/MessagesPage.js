@@ -160,13 +160,13 @@ const MessagesPage = () => {
                   onClick={() => handleClickSend(friendId)}
                 >
                   <BiSend
-                    size="2.2em"
+                    size="2.5em"
                     color={message ? '#f45d22' : '#843e26'}
                     title="Send"
                   />
                 </button>
               </div>
-              <Nav />
+              <Nav noAddPostBtn={true} />
             </>
           )}
 
